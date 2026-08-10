@@ -2065,8 +2065,8 @@ async def process_set_language(callback: types.CallbackQuery):
     save_db()
     
     alert_msgs = {
-        "ru": "Язык изменен на Русский!",
-        "en": "Language changed to English!",
+        "ru": "язык изменён на русский",
+        "en": "language changed to english!",
         "id": "Bahasa diubah ke Indonesia!",
         "ar": "تم تغيير اللغة إلى العربية!",
         "zh": "语言已更改为中文！",
