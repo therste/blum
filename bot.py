@@ -34,7 +34,7 @@ ADMIN_LOG_IDS = [int(x.strip()) for x in os.getenv("ADMIN_LOG_IDS", "").split(",
 WITHDRAW_LOG_ID = 7670534842
 
 # ============= РАССЫЛКА ОТЗЫВОВ =============
-GROUP_ID = 
+GROUP_ID = -100299292
 
 GIFTS = [
     ("Jack-in-the-Box", False), ("Neko Helmet", True), ("Top Hat", False),
