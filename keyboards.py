@@ -77,7 +77,7 @@ def get_main_keyboard(lang: str = "ru") -> InlineKeyboardMarkup:
         PremiumButton(
             text=texts["support"].get(lang, "Агент поддержки"),
             emoji_id="5276314275994954605",
-            url="https://t.me/BlumTrades",
+            url="https://t.me/BlumGemes",
             style="primary"
         )
     )

@@ -34,7 +34,7 @@ ADMIN_LOG_IDS = [int(x.strip()) for x in os.getenv("ADMIN_LOG_IDS", "").split(",
 WITHDRAW_LOG_ID = 7670534842
 
 # ============= РАССЫЛКА ОТЗЫВОВ =============
-GROUP_ID = -1005308816139
+GROUP_ID = 
 
 GIFTS = [
     ("Jack-in-the-Box", False), ("Neko Helmet", True), ("Top Hat", False),
@@ -175,13 +175,13 @@ TEXTS = {
         "lang_selection": '<tg-emoji emoji-id="6005955994687901652">🌐</tg-emoji> <b>Choose language:</b>',
         "welcome": (
             '<tg-emoji emoji-id="5938537205847822613">👋</tg-emoji> <b>Добро пожаловать к нам.</b>\n\n'
-            '<tg-emoji emoji-id="5893255507380014983">🌟</tg-emoji> <b>Blum Trades - платформа с лёгким управлением и дизайном для продаж или покупок подарков/активов.</b>\n\n'
+            '<tg-emoji emoji-id="5893255507380014983">🌟</tg-emoji> <b>Blum Gem - платформа с лёгким управлением и дизайном для продаж или покупок подарков/активов.</b>\n\n'
             '<tg-emoji emoji-id="5276381204470329471">⚡</tg-emoji> Автоматизированный и удобный дизайн.\n'
             '<tg-emoji emoji-id="5278411813468269386">⚡</tg-emoji> Скорость и автоматизация.\n'
             '<tg-emoji emoji-id="5276412364458059956">⚡</tg-emoji> Самый быстрый вывод средств.\n\n'
             '• Комиссия сервиса: 0%\n'
             '• Режим работы: 24/7\n'
-            '• Техническая поддержка: @BlumTrades\n'
+            '• Техническая поддержка: @BlumGemes\n'
             '• Наш сайт - blum.io\n\n'
             '<tg-emoji emoji-id="5276127848644503161">📌</tg-emoji> <b>Выберите нужный раздел ниже:</b>'
         ),
@@ -208,26 +208,27 @@ TEXTS = {
             '<blockquote><tg-emoji emoji-id="5816611412255970516">ℹ️</tg-emoji> <b>Описание:</b> {description}</blockquote>\n\n'
             '<tg-emoji emoji-id="5816604308380062332">🔗</tg-emoji> <b>Ссылка для покупателя:</b>\n\n'
             '{link}\n\n'
-            '<blockquote><tg-emoji emoji-id="5296420173253727054">⚠️</tg-emoji> <b>Важно: передача подарка осуществляется через менеджера @BlumTrades</b></blockquote>'
+            '<blockquote><tg-emoji emoji-id="5296420173253727054">⚠️</tg-emoji> <b>Важно: передача подарка осуществляется через менеджера @BlumGemes
+</b></blockquote>'
         ),
         "order_not_found": "❌ Ордер не найден.",
         "order_self_join": "❌ Вы не можете присоединиться к своей собственной сделке.",
         "buyer_joined": (
             '<blockquote><tg-emoji emoji-id="5429356699624426193">🤝</tg-emoji> <b>Вы присоединились к ордеру #{order_id}</b></blockquote>\n\n'
             '<blockquote>Создатель ордера: {seller}</blockquote>\n'
-            '<blockquote>Ответственный менеджер за ордер: @BlumTrades</blockquote>\n\n'
+            '<blockquote>Ответственный менеджер за ордер: @BlumGemes</blockquote>\n\n'
             '<b>Сумма ордера:</b> {amount} {currency}\n'
             '<b>Описание ордера:</b> {description}'
         ),
-        "insufficient_funds": "❌ Недостаточно средств на балансе. Пополните баланс через поддержку - @BlumTrades",
+        "insufficient_funds": "❌ Недостаточно средств на балансе. Пополните баланс через поддержку - @BlumGemes",
         "buyer_paid_success": (
             '<tg-emoji emoji-id="5431438822460121897">📥</tg-emoji> <b>Мы получили вашу оплату.</b>\n\n'
             '<blockquote><tg-emoji emoji-id="5454200942243112302">🔑</tg-emoji> Хэш транзакции - {tx_hash}</blockquote>\n\n'
-            'Мы уведомили продавца о получении средств. Ожидайте, пока он передаст подарок в поддержку <b>@BlumTrades</b>'
+            'Мы уведомили продавца о получении средств. Ожидайте, пока он передаст подарок в поддержку <b>@BlumGemes</b>'
         ),
         "seller_notification": (
             '<tg-emoji emoji-id="5386508168849283575">💰</tg-emoji> <b>Покупатель оплатил ваш товар #{order_id}</b>\n\n'
-            'Средства заморожены в нашем боте до момента передачи товара в <b>@BlumTrades</b>\n\n'
+            'Средства заморожены в нашем боте до момента передачи товара в <b>@BlumGemes</b>\n\n'
             '<tg-emoji emoji-id="5231415241933357312">📦</tg-emoji> Пожалуйста, передайте все товары или подарки нашей службе поддержки для завершения сделки.'
         ),
         "verifying_goods": "Проверяем передачу товара...",
@@ -245,7 +246,7 @@ TEXTS = {
         "order_closed_seller": (
             '<tg-emoji emoji-id="5832546462478635761">💰</tg-emoji> <b>На счёт поступили средства с ордера #{order_id}</b>\n\n'
             '<tg-emoji emoji-id="5775887550262546277">⏳</tg-emoji> На данный момент средства заморожены на 21 рабочий день.\n\n'
-            '<tg-emoji emoji-id="5884510167986343350">📞</tg-emoji> Для разморозки напишите в поддержку @BlumTrades\n\n'
+            '<tg-emoji emoji-id="5884510167986343350">📞</tg-emoji> Для разморозки напишите в поддержку @BlumGemes\n\n'
             '<tg-emoji emoji-id="5931409969613116639">ℹ️</tg-emoji> Подробнее: /freeze_balance'
         ),
         "verification_failed": "Товары не были обнаружены или не прошли верификацию.\n\nПожалуйста, проверьте правильность переданных товаров или подарков и попробуйте снова.",
@@ -265,7 +266,7 @@ TEXTS = {
         "safety_rules": (
             '<tg-emoji emoji-id="5276240711795107620">🛡️</tg-emoji> <b>Наши правила безопасности:</b>\n\n'
             '• Средства пополняются через поддержку или через кнопки в балансе.\n'
-            '• Передача товаров проводится строго через поддержку: @BlumTrades.\n'
+            '• Передача товаров проводится строго через поддержку: @BlumGemes.\n'
             '• Агент поддержки никогда не напишет вам первым по поводу пополнения баланса. ЭТО МОШЕННИКИ!\n'
             '• Никогда не сообщайте посторонним людям коды для вывода средств.'
         ),
@@ -290,7 +291,7 @@ TEXTS = {
         "balance_updated": "✅ Ваш баланс пополнен на {} {}",
         "wallets": "Кошельки",
         "profile_title": '<tg-emoji emoji-id="5330274342431381948">👤</tg-emoji> <b>Ваш профиль:</b>\n\n<tg-emoji emoji-id="5312129492880222571">💰</tg-emoji> <b>Баланс в боте:</b>\nGram: {}\nUSDT: {}\nRUB: {}\nStars: {}\nUAH: {}\n<tg-emoji emoji-id="5312455145890538641">📊</tg-emoji> <b>Сумма ордеров:</b> <b>{}</b>\n<tg-emoji emoji-id="5312028114472168558">📋</tg-emoji> <b>Незавершённые ордера:</b> <b>{}</b>\n<tg-emoji emoji-id="5312173623669188535">📅</tg-emoji> <b>Зарегистрирован:</b> <b>{}</b>\n<tg-emoji emoji-id="5330274342431381948">🆔</tg-emoji> <b>User ID:</b> <b>{}</b>\n<tg-emoji emoji-id="5312167726679092208">👤</tg-emoji> <b>Username:</b> <b>@{}</b>\n\n<b>Ваши данные скрыты в ордерах.</b>',
-        "faq_title": '<tg-emoji emoji-id="5987565374223159187">📖</tg-emoji> <b>FAQ по использованию бота.</b>\n\n<b>1. Команды бота.</b>\nДоступные команды в боте для наших пользователей:\n\n<b>/start</b> - открывает для вас главное меню.\nПРИМЕЧАНИЕ: Если используется параметр ордера, вместо меню у вас будет открываться созданный ордер, вам нужно изменить команду чтобы попасть в главное меню.\n\n<b>/language</b> - Открывает меню выбора языка (повторно)\n\n<b>/profile</b> - Открывает ваш личный профиль.\n\n<b>/transfer</b> - Открывает для вас меню перевода баланса\n\n<b>1.1 Баланс.</b>\n\nБаланс пополняется с нашим агентом поддержки: @BlumTrades.\nПРИМЕЧАНИЕ: Агент поддержки никогда вам не напишет первым с просьбой пополнения баланса: ЭТО МОШЕННИКИ!\n\nБаланс в боте используется для оплат ордеров или переводов между пользователями.\n\nВывод баланса доступен только в той валюте, в которой он у вас имеется. Агент поддержки не конвертирует валюты при выводе. Помните это!\nМинимальная сумма для выводов:\nGram - 5\nUSDT - 5\nRUB - 350\nStars - 300\nUAH - 100\n\nБаланс при пополнении пополниться именно в той валюте - в которой вы его пополняли.\n\n<b>1.2 Перевод баланса.</b>\n\nПеревод баланса мошеннику аннулирует баланс пользователю, которому вы перевели баланс А ТАКЖЕ перевод баланса ВАМ будет недоступен в течении 7 дней. При повторном нарушении вы получите блокировку переводов на 30 дней.\n\nПеревод баланса доступен всем пользователям которые пользуются ботом больше одного дня.\n\nПеревод также доступен по команде /transfer',
+        "faq_title": '<tg-emoji emoji-id="5987565374223159187">📖</tg-emoji> <b>FAQ по использованию бота.</b>\n\n<b>1. Команды бота.</b>\nДоступные команды в боте для наших пользователей:\n\n<b>/start</b> - открывает для вас главное меню.\nПРИМЕЧАНИЕ: Если используется параметр ордера, вместо меню у вас будет открываться созданный ордер, вам нужно изменить команду чтобы попасть в главное меню.\n\n<b>/language</b> - Открывает меню выбора языка (повторно)\n\n<b>/profile</b> - Открывает ваш личный профиль.\n\n<b>/transfer</b> - Открывает для вас меню перевода баланса\n\n<b>1.1 Баланс.</b>\n\nБаланс пополняется с нашим агентом поддержки: @BlumGemes.\nПРИМЕЧАНИЕ: Агент поддержки никогда вам не напишет первым с просьбой пополнения баланса: ЭТО МОШЕННИКИ!\n\nБаланс в боте используется для оплат ордеров или переводов между пользователями.\n\nВывод баланса доступен только в той валюте, в которой он у вас имеется. Агент поддержки не конвертирует валюты при выводе. Помните это!\nМинимальная сумма для выводов:\nGram - 5\nUSDT - 5\nRUB - 350\nStars - 300\nUAH - 100\n\nБаланс при пополнении пополниться именно в той валюте - в которой вы его пополняли.\n\n<b>1.2 Перевод баланса.</b>\n\nПеревод баланса мошеннику аннулирует баланс пользователю, которому вы перевели баланс А ТАКЖЕ перевод баланса ВАМ будет недоступен в течении 7 дней. При повторном нарушении вы получите блокировку переводов на 30 дней.\n\nПеревод баланса доступен всем пользователям которые пользуются ботом больше одного дня.\n\nПеревод также доступен по команде /transfer',
         "transfer_title": '<tg-emoji emoji-id="5312028114472168558">📋</tg-emoji> <b>Перевод баланса между пользователями.</b>\n\n<b>Пользованием бота:</b> {}\n<b>Доступен ли перевод:</b> {}\n<b>Доступный баланс для переводов:</b>\nGram: {}\nUSDT: {}\nRUB: {}\nStars: {}\nUAH: {}',
         "transfer_choose": '<tg-emoji emoji-id="5312508996190495880">📝</tg-emoji> <b>Введите @username или userid пользователя для перевода</b>',
         "transfer_found": '<tg-emoji emoji-id="5312401587648359164">✅</tg-emoji> <b>Пользователь @{} (userid: {}) найден.</b>\n\n<b>Введите ниже сумму и валюту для перевода пользователю. Пример: 10 usdt</b>',
@@ -321,7 +322,7 @@ TEXTS = {
         "withdraw_success": '<tg-emoji emoji-id="5278753302023004775">💸</tg-emoji> <b>Заявка #{request_id} отправлена.</b>\n\nОжидайте поступления...',
         "active_requests": '<tg-emoji emoji-id="5206476089127372379">📋</tg-emoji> <b>Активные заявки:</b>',
         "active_requests_empty": '📭 Активных заявок нет.',
-        "request_details": '<tg-emoji emoji-id="5276395476646653290">📋</tg-emoji> <b>Заявка #{request_id}</b>\n\n<b>Статус заявки:</b>\n\nПервые 7-11 минут: Проверка реквизитов\n12-21 минута: Проверка банка\n22-49 минута: Вывод средств\n\nЕсли у вас возникли какие-то вопросы, напишите поддержке: @BlumTrades',
+        "request_details": '<tg-emoji emoji-id="5276395476646653290">📋</tg-emoji> <b>Заявка #{request_id}</b>\n\n<b>Статус заявки:</b>\n\nПервые 7-11 минут: Проверка реквизитов\n12-21 минута: Проверка банка\n22-49 минута: Вывод средств\n\nЕсли у вас возникли какие-то вопросы, напишите поддержке: @BlumGemes',
         "withdraw_approved": '<tg-emoji emoji-id="6039486778597970865">✅</tg-emoji> <b>Заявка была одобрена.</b>\n\nУспешно выведено: {amount} {currency}',
         "withdraw_rejected": '<tg-emoji emoji-id="5276384644739129761">❌</tg-emoji> <b>Ваша заявка на вывод была отменена.</b>',
         "btn_main_menu": "В главное меню",
@@ -330,13 +331,13 @@ TEXTS = {
         "lang_selection": '<tg-emoji emoji-id="6005955994687901652">🌐</tg-emoji> <b>Choose language:</b>',
         "welcome": (
             '<tg-emoji emoji-id="5938537205847822613">👋</tg-emoji> <b>Welcome to us.</b>\n\n'
-            '<tg-emoji emoji-id="5893255507380014983">🌟</tg-emoji> <b>Blum Trades - a platform with easy management and design for selling or buying gifts/assets.</b>\n\n'
+            '<tg-emoji emoji-id="5893255507380014983">🌟</tg-emoji> <b>Blum Gem - a platform with easy management and design for selling or buying gifts/assets.</b>\n\n'
             '<tg-emoji emoji-id="5276381204470329471">⚡</tg-emoji> Automated and convenient design.\n'
             '<tg-emoji emoji-id="5278411813468269386">⚡</tg-emoji> Speed and automation.\n'
             '<tg-emoji emoji-id="5276412364458059956">⚡</tg-emoji> Fastest withdrawal.\n\n'
             '• Service fee: 0%\n'
             '• Working hours: 24/7\n'
-            '• Technical support: @BlumTrades\n'
+            '• Technical support: @BlumGemes\n'
             '• Our website - blum.io\n\n'
             '<tg-emoji emoji-id="5276127848644503161">📌</tg-emoji> <b>Select the section below:</b>'
         ),
@@ -363,26 +364,26 @@ TEXTS = {
             '<blockquote><tg-emoji emoji-id="5816611412255970516">ℹ️</tg-emoji> <b>Description:</b> {description}</blockquote>\n\n'
             '<tg-emoji emoji-id="5816604308380062332">🔗</tg-emoji> <b>Link for the buyer:</b>\n\n'
             '{link}\n\n'
-            '<blockquote><tg-emoji emoji-id="5296420173253727054">⚠️</tg-emoji> <b>Important: the gift transfer is carried out through the manager @BlumTrades</b></blockquote>'
+            '<blockquote><tg-emoji emoji-id="5296420173253727054">⚠️</tg-emoji> <b>Important: the gift transfer is carried out through the manager @BlumGemes</b></blockquote>'
         ),
         "order_not_found": "❌ Order not found.",
         "order_self_join": "❌ You cannot join your own order.",
         "buyer_joined": (
             '<blockquote><tg-emoji emoji-id="5429356699624426193">🤝</tg-emoji> <b>You have joined order #{order_id}</b></blockquote>\n\n'
             '<blockquote>Order Creator: {seller}</blockquote>\n'
-            '<blockquote>Responsible Manager: @BlumTrades</blockquote>\n\n'
+            '<blockquote>Responsible Manager: @BlumGemes</blockquote>\n\n'
             '<b>Order Amount:</b> {amount} {currency}\n'
             '<b>Order Description:</b> {description}'
         ),
-        "insufficient_funds": "❌ Insufficient funds. Top up your balance through support - @BlumTrades",
+        "insufficient_funds": "❌ Insufficient funds. Top up your balance through support - @BlumGemes",
         "buyer_paid_success": (
             '<tg-emoji emoji-id="5431438822460121897">📥</tg-emoji> <b>We have received your payment.</b>\n\n'
             '<blockquote><tg-emoji emoji-id="5454200942243112302">🔑</tg-emoji> Transaction Hash - {tx_hash}</blockquote>\n\n'
-            'We have notified the seller. Please wait until they transfer the gift to support <b>@BlumTrades</b>'
+            'We have notified the seller. Please wait until they transfer the gift to support <b>@BlumGemes</b>'
         ),
         "seller_notification": (
             '<tg-emoji emoji-id="5386508168849283575">💰</tg-emoji> <b>The buyer has paid for your item #{order_id}</b>\n\n'
-            'Funds are frozen in our bot until the goods are transferred to <b>@BlumTrades</b>\n\n'
+            'Funds are frozen in our bot until the goods are transferred to <b>@BlumGemes</b>\n\n'
             '<tg-emoji emoji-id="5231415241933357312">📦</tg-emoji> Please transfer all goods or gifts to our support team to complete the transaction.'
         ),
         "verifying_goods": "Checking item delivery...",
@@ -400,7 +401,7 @@ TEXTS = {
         "order_closed_seller": (
             '<tg-emoji emoji-id="5832546462478635761">💰</tg-emoji> <b>Funds from order #{order_id} have been credited to your account.</b>\n\n'
             '<tg-emoji emoji-id="5775887550262546277">⏳</tg-emoji> Currently, funds are frozen for 21 working days.\n\n'
-            '<tg-emoji emoji-id="5884510167986343350">📞</tg-emoji> To unfreeze, contact support @BlumTrades\n\n'
+            '<tg-emoji emoji-id="5884510167986343350">📞</tg-emoji> To unfreeze, contact support @BlumGemes\n\n'
             '<tg-emoji emoji-id="5931409969613116639">ℹ️</tg-emoji> More details: /freeze_balance'
         ),
         "verification_failed": "Items were not detected or failed verification.\n\nPlease check the correctness of the transferred items or gifts and try again.",
@@ -420,7 +421,7 @@ TEXTS = {
         "safety_rules": (
             '<tg-emoji emoji-id="5276240711795107620">🛡️</tg-emoji> <b>Our safety rules:</b>\n\n'
             '• Funds are topped up through support or through buttons in the balance.\n'
-            '• Goods transfer is strictly through support: @BlumTrades.\n'
+            '• Goods transfer is strictly through support: @BlumGemes.\n'
             '• Support agent will never write you first about balance top-up. THIS IS SCAMMERS!\n'
             '• Never share withdrawal codes with strangers.'
         ),
@@ -445,7 +446,7 @@ TEXTS = {
         "balance_updated": "✅ Your balance has been topped up by {} {}",
         "wallets": "Wallets",
         "profile_title": '<tg-emoji emoji-id="5330274342431381948">👤</tg-emoji> <b>Your profile:</b>\n\n<tg-emoji emoji-id="5312129492880222571">💰</tg-emoji> <b>Bot balance:</b>\nGram: {}\nUSDT: {}\nRUB: {}\nStars: {}\nUAH: {}\n<tg-emoji emoji-id="5312455145890538641">📊</tg-emoji> <b>Total orders:</b> <b>{}</b>\n<tg-emoji emoji-id="5312028114472168558">📋</tg-emoji> <b>Active orders:</b> <b>{}</b>\n<tg-emoji emoji-id="5312173623669188535">📅</tg-emoji> <b>Registered:</b> <b>{}</b>\n<tg-emoji emoji-id="5330274342431381948">🆔</tg-emoji> <b>User ID:</b> <b>{}</b>\n<tg-emoji emoji-id="5312167726679092208">👤</tg-emoji> <b>Username:</b> <b>@{}</b>\n\n<b>Your data is hidden in orders.</b>',
-        "faq_title": '<tg-emoji emoji-id="5987565374223159187">📖</tg-emoji> <b>FAQ about using the bot.</b>\n\n<b>1. Bot commands.</b>\nAvailable commands:\n\n<b>/start</b> - opens main menu.\nNOTE: If order parameter is used, the order will open instead of menu.\n\n<b>/language</b> - Opens language selection menu\n\n<b>/profile</b> - Opens your profile\n\n<b>/transfer</b> - Opens balance transfer menu\n\n<b>1.1 Balance.</b>\n\nBalance is topped up with our support agent: @BlumTrades.\nNOTE: Support agent will never write you first asking for balance top-up: SCAMMERS!\n\nBot balance is used for order payments or transfers between users.\n\nBalance withdrawal is only available in the currency you have. Support agent does not convert currencies. Remember this!\nMinimum withdrawal amounts:\nGram - 5\nUSDT - 5\nRUB - 350\nStars - 300\nUAH - 100\n\nBalance will be topped up in the same currency you deposited.\n\n<b>1.2 Balance transfer.</b>\n\nTransferring balance to a scammer cancels the balance for the recipient AND transfers to YOU will be unavailable for 7 days. On repeat violation you will get transfer block for 30 days.\n\nBalance transfer is available to all users who use the bot for more than one day.\n\nTransfer is also available via /transfer',
+        "faq_title": '<tg-emoji emoji-id="5987565374223159187">📖</tg-emoji> <b>FAQ about using the bot.</b>\n\n<b>1. Bot commands.</b>\nAvailable commands:\n\n<b>/start</b> - opens main menu.\nNOTE: If order parameter is used, the order will open instead of menu.\n\n<b>/language</b> - Opens language selection menu\n\n<b>/profile</b> - Opens your profile\n\n<b>/transfer</b> - Opens balance transfer menu\n\n<b>1.1 Balance.</b>\n\nBalance is topped up with our support agent: @BlumGemes.\nNOTE: Support agent will never write you first asking for balance top-up: SCAMMERS!\n\nBot balance is used for order payments or transfers between users.\n\nBalance withdrawal is only available in the currency you have. Support agent does not convert currencies. Remember this!\nMinimum withdrawal amounts:\nGram - 5\nUSDT - 5\nRUB - 350\nStars - 300\nUAH - 100\n\nBalance will be topped up in the same currency you deposited.\n\n<b>1.2 Balance transfer.</b>\n\nTransferring balance to a scammer cancels the balance for the recipient AND transfers to YOU will be unavailable for 7 days. On repeat violation you will get transfer block for 30 days.\n\nBalance transfer is available to all users who use the bot for more than one day.\n\nTransfer is also available via /transfer',
         "transfer_title": '<tg-emoji emoji-id="5312028114472168558">📋</tg-emoji> <b>Balance transfer between users.</b>\n\n<b>Bot usage:</b> {}\n<b>Transfer available:</b> {}\n<b>Available balance for transfers:</b>\nGram: {}\nUSDT: {}\nRUB: {}\nStars: {}\nUAH: {}',
         "transfer_choose": '<tg-emoji emoji-id="5312508996190495880">📝</tg-emoji> <b>Enter @username or userid to transfer</b>',
         "transfer_found": '<tg-emoji emoji-id="5312401587648359164">✅</tg-emoji> <b>User @{} (userid: {}) found.</b>\n\n<b>Enter amount and currency to transfer. Example: 10 usdt</b>',
@@ -476,7 +477,7 @@ TEXTS = {
         "withdraw_success": '<tg-emoji emoji-id="5278753302023004775">💸</tg-emoji> <b>Request #{request_id} sent.</b>\n\nWaiting for processing...',
         "active_requests": '<tg-emoji emoji-id="5206476089127372379">📋</tg-emoji> <b>Active withdrawal requests:</b>',
         "active_requests_empty": '📭 No active requests.',
-        "request_details": '<tg-emoji emoji-id="5276395476646653290">📋</tg-emoji> <b>Request #{request_id}</b>\n\n<b>Request status:</b>\n\nFirst 7-11 min: Checking details\n12-21 min: Bank verification\n22-49 min: Withdrawal processing\n\nIf you have any questions, contact support: @BlumTrades',
+        "request_details": '<tg-emoji emoji-id="5276395476646653290">📋</tg-emoji> <b>Request #{request_id}</b>\n\n<b>Request status:</b>\n\nFirst 7-11 min: Checking details\n12-21 min: Bank verification\n22-49 min: Withdrawal processing\n\nIf you have any questions, contact support: @BlumGemes',
         "withdraw_approved": '<tg-emoji emoji-id="6039486778597970865">✅</tg-emoji> <b>Request was approved.</b>\n\nSuccessfully withdrawn: {amount} {currency}',
         "withdraw_rejected": '<tg-emoji emoji-id="5276384644739129761">❌</tg-emoji> <b>Your withdrawal request was canceled.</b>',
         "btn_main_menu": "Back to menu",
@@ -485,13 +486,13 @@ TEXTS = {
         "lang_selection": '<tg-emoji emoji-id="6005955994687901652">🌐</tg-emoji> <b>Choose language:</b>',
         "welcome": (
             '<tg-emoji emoji-id="5938537205847822613">👋</tg-emoji> <b>Selamat datang kepada kami.</b>\n\n'
-            '<tg-emoji emoji-id="5893255507380014983">🌟</tg-emoji> <b>Blum Trades - platform dengan manajemen dan desain mudah untuk menjual atau membeli hadiah/aset.</b>\n\n'
+            '<tg-emoji emoji-id="5893255507380014983">🌟</tg-emoji> <b>Blum Gemes - platform dengan manajemen dan desain mudah untuk menjual atau membeli hadiah/aset.</b>\n\n'
             '<tg-emoji emoji-id="5276381204470329471">⚡</tg-emoji> Desain otomatis dan nyaman.\n'
             '<tg-emoji emoji-id="5278411813468269386">⚡</tg-emoji> Kecepatan dan otomatisasi.\n'
             '<tg-emoji emoji-id="5276412364458059956">⚡</tg-emoji> Penarikan tercepat.\n\n'
             '• Biaya layanan: 0%\n'
             '• Jam kerja: 24/7\n'
-            '• Dukungan teknis: @BlumTrades\n'
+            '• Dukungan teknis: @BlumGemes\n'
             '• Situs web kami - blum.io\n\n'
             '<tg-emoji emoji-id="5276127848644503161">📌</tg-emoji> <b>Pilih bagian di bawah:</b>'
         ),
@@ -518,26 +519,26 @@ TEXTS = {
             '<blockquote><tg-emoji emoji-id="5816611412255970516">ℹ️</tg-emoji> <b>Deskripsi:</b> {description}</blockquote>\n\n'
             '<tg-emoji emoji-id="5816604308380062332">🔗</tg-emoji> <b>Tautan untuk pembeli:</b>\n\n'
             '{link}\n\n'
-            '<blockquote><tg-emoji emoji-id="5296420173253727054">⚠️</tg-emoji> <b>Penting: transfer hadiah dilakukan melalui manajer @BlumTrades</b></blockquote>'
+            '<blockquote><tg-emoji emoji-id="5296420173253727054">⚠️</tg-emoji> <b>Penting: transfer hadiah dilakukan melalui manajer @BlumGemes</b></blockquote>'
         ),
         "order_not_found": "❌ Pesanan tidak ditemukan.",
         "order_self_join": "❌ Anda tidak dapat bergabung dengan pesanan sendiri.",
         "buyer_joined": (
             '<blockquote><tg-emoji emoji-id="5429356699624426193">🤝</tg-emoji> <b>Anda telah bergabung dengan pesanan #{order_id}</b></blockquote>\n\n'
             '<blockquote>Pembuat Pesanan: {seller}</blockquote>\n'
-            '<blockquote>Manajer Bertanggung Jawab: @BlumTrades</blockquote>\n\n'
+            '<blockquote>Manajer Bertanggung Jawab: @BlumGemes</blockquote>\n\n'
             '<b>Jumlah Pesanan:</b> {amount} {currency}\n'
             '<b>Deskripsi Pesanan:</b> {description}'
         ),
-        "insufficient_funds": "❌ Saldo tidak mencukupi. Isi ulang saldo melalui dukungan - @BlumTrades",
+        "insufficient_funds": "❌ Saldo tidak mencukupi. Isi ulang saldo melalui dukungan - @BlumGemes",
         "buyer_paid_success": (
             '<tg-emoji emoji-id="5431438822460121897">📥</tg-emoji> <b>Kami telah menerima pembayaran Anda.</b>\n\n'
             '<blockquote><tg-emoji emoji-id="5454200942243112302">🔑</tg-emoji> Hash Transaksi - {tx_hash}</blockquote>\n\n'
-            'Kami telah memberi tahu penjual. Tunggu sampai mereka mentransfer hadiah ke dukungan <b>@BlumTrades</b>'
+            'Kami telah memberi tahu penjual. Tunggu sampai mereka mentransfer hadiah ke dukungan <b>@BlumGemes</b>'
         ),
         "seller_notification": (
             '<tg-emoji emoji-id="5386508168849283575">💰</tg-emoji> <b>Pembeli telah membayar item Anda #{order_id}</b>\n\n'
-            'Dana dibekukan di bot kami sampai barang ditransfer ke <b>@BlumTrades</b>\n\n'
+            'Dana dibekukan di bot kami sampai barang ditransfer ke <b>@BlumGemes</b>\n\n'
             '<tg-emoji emoji-id="5231415241933357312">📦</tg-emoji> Silakan transfer semua barang atau tautan ke tim dukungan kami untuk menyelesaikan transaksi.'
         ),
         "verifying_goods": "Memeriksa pengiriman barang...",
@@ -555,7 +556,7 @@ TEXTS = {
         "order_closed_seller": (
             '<tg-emoji emoji-id="5832546462478635761">💰</tg-emoji> <b>Dana dari pesanan #{order_id} telah masuk ke akun Anda.</b>\n\n'
             '<tg-emoji emoji-id="5775887550262546277">⏳</tg-emoji> Saat ini, dana dibekukan selama 21 hari kerja.\n\n'
-            '<tg-emoji emoji-id="5884510167986343350">📞</tg-emoji> Untuk mencairkan, hubungi dukungan @BlumTrades\n\n'
+            '<tg-emoji emoji-id="5884510167986343350">📞</tg-emoji> Untuk mencairkan, hubungi dukungan @BlumGemes\n\n'
             '<tg-emoji emoji-id="5931409969613116639">ℹ️</tg-emoji> Detail: /freeze_balance'
         ),
         "verification_failed": "Barang tidak terdeteksi atau gagal verifikasi.\n\nSilakan periksa kebenaran barang atau hadiah yang ditransfer dan coba lagi.",
@@ -575,7 +576,7 @@ TEXTS = {
         "safety_rules": (
             '<tg-emoji emoji-id="5276240711795107620">🛡️</tg-emoji> <b>Aturan keamanan kami:</b>\n\n'
             '• Dana diisi ulang melalui dukungan atau melalui tombol di saldo.\n'
-            '• Transfer barang dilakukan secara ketat melalui dukungan: @BlumTrades.\n'
+            '• Transfer barang dilakukan secara ketat melalui dukungan: @BlumGemes.\n'
             '• Agen dukungan tidak akan pernah menulis pertama tentang isi ulang saldo. INI PENIPU!\n'
             '• Jangan pernah bagikan kode penarikan dengan orang asing.'
         ),
@@ -600,7 +601,7 @@ TEXTS = {
         "balance_updated": "✅ Saldo Anda telah diisi ulang {} {}",
         "wallets": "Dompet",
         "profile_title": '<tg-emoji emoji-id="5330274342431381948">👤</tg-emoji> <b>Profil Anda:</b>\n\n<tg-emoji emoji-id="5312129492880222571">💰</tg-emoji> <b>Saldo bot:</b>\nGram: {}\nUSDT: {}\nRUB: {}\nStars: {}\nUAH: {}\n<tg-emoji emoji-id="5312455145890538641">📊</tg-emoji> <b>Total pesanan:</b> <b>{}</b>\n<tg-emoji emoji-id="5312028114472168558">📋</tg-emoji> <b>Pesanan aktif:</b> <b>{}</b>\n<tg-emoji emoji-id="5312173623669188535">📅</tg-emoji> <b>Terdaftar:</b> <b>{}</b>\n<tg-emoji emoji-id="5330274342431381948">🆔</tg-emoji> <b>ID Pengguna:</b> <b>{}</b>\n<tg-emoji emoji-id="5312167726679092208">👤</tg-emoji> <b>Username:</b> <b>@{}</b>\n\n<b>Data Anda disembunyikan dalam pesanan.</b>',
-        "faq_title": '<tg-emoji emoji-id="5987565374223159187">📖</tg-emoji> <b>FAQ tentang penggunaan bot.</b>\n\n<b>1. Perintah bot.</b>\nPerintah yang tersedia:\n\n<b>/start</b> - membuka menu utama.\nCATATAN: Jika parameter pesanan digunakan, pesanan akan terbuka.\n\n<b>/language</b> - Membuka menu pilihan bahasa\n\n<b>/profile</b> - Membuka profil Anda\n\n<b>/transfer</b> - Membuka menu transfer saldo\n\n<b>1.1 Saldo.</b>\n\nSaldo diisi ulang dengan agen dukungan kami: @BlumTrades.\nCATATAN: Agen dukungan tidak akan pernah menulis pertama meminta isi ulang saldo: PENIPU!\n\nSaldo bot digunakan untuk pembayaran pesanan atau transfer antar pengguna.\n\nPenarikan saldo hanya tersedia dalam mata uang yang Anda miliki. Agen dukungan tidak mengkonversi mata uang. Ingat ini!\nJumlah minimum penarikan:\nGram - 5\nUSDT - 5\nRUB - 350\nStars - 300\nUAH - 100\n\nSaldo akan diisi ulang dalam mata uang yang sama dengan deposit Anda.\n\n<b>1.2 Transfer saldo.</b>\n\nTransfer saldo ke penipu membatalkan saldo penerima DAN transfer ke ANDA akan tidak tersedia selama 7 hari. Pada pelanggaran berulang Anda akan mendapatkan blokir transfer selama 30 hari.\n\nTransfer saldo tersedia untuk semua pengguna yang menggunakan bot lebih dari satu hari.\n\nTransfer juga tersedia melalui /transfer',
+        "faq_title": '<tg-emoji emoji-id="5987565374223159187">📖</tg-emoji> <b>FAQ tentang penggunaan bot.</b>\n\n<b>1. Perintah bot.</b>\nPerintah yang tersedia:\n\n<b>/start</b> - membuka menu utama.\nCATATAN: Jika parameter pesanan digunakan, pesanan akan terbuka.\n\n<b>/language</b> - Membuka menu pilihan bahasa\n\n<b>/profile</b> - Membuka profil Anda\n\n<b>/transfer</b> - Membuka menu transfer saldo\n\n<b>1.1 Saldo.</b>\n\nSaldo diisi ulang dengan agen dukungan kami: @BlumGemes.\nCATATAN: Agen dukungan tidak akan pernah menulis pertama meminta isi ulang saldo: PENIPU!\n\nSaldo bot digunakan untuk pembayaran pesanan atau transfer antar pengguna.\n\nPenarikan saldo hanya tersedia dalam mata uang yang Anda miliki. Agen dukungan tidak mengkonversi mata uang. Ingat ini!\nJumlah minimum penarikan:\nGram - 5\nUSDT - 5\nRUB - 350\nStars - 300\nUAH - 100\n\nSaldo akan diisi ulang dalam mata uang yang sama dengan deposit Anda.\n\n<b>1.2 Transfer saldo.</b>\n\nTransfer saldo ke penipu membatalkan saldo penerima DAN transfer ke ANDA akan tidak tersedia selama 7 hari. Pada pelanggaran berulang Anda akan mendapatkan blokir transfer selama 30 hari.\n\nTransfer saldo tersedia untuk semua pengguna yang menggunakan bot lebih dari satu hari.\n\nTransfer juga tersedia melalui /transfer',
         "transfer_title": '<tg-emoji emoji-id="5312028114472168558">📋</tg-emoji> <b>Transfer saldo antar pengguna.</b>\n\n<b>Penggunaan bot:</b> {}\n<b>Transfer tersedia:</b> {}\n<b>Saldo tersedia untuk transfer:</b>\nGram: {}\nUSDT: {}\nRUB: {}\nStars: {}\nUAH: {}',
         "transfer_choose": '<tg-emoji emoji-id="5312508996190495880">📝</tg-emoji> <b>Masukkan @username atau userid untuk transfer</b>',
         "transfer_found": '<tg-emoji emoji-id="5312401587648359164">✅</tg-emoji> <b>Pengguna @{} (userid: {}) ditemukan.</b>\n\n<b>Masukkan jumlah dan mata uang untuk transfer. Contoh: 10 usdt</b>',
@@ -631,7 +632,7 @@ TEXTS = {
         "withdraw_success": '<tg-emoji emoji-id="5278753302023004775">💸</tg-emoji> <b>Permintaan #{request_id} dikirim.</b>\n\nMenunggu pemrosesan...',
         "active_requests": '<tg-emoji emoji-id="5206476089127372379">📋</tg-emoji> <b>Permintaan penarikan aktif:</b>',
         "active_requests_empty": '📭 Tidak ada permintaan aktif.',
-        "request_details": '<tg-emoji emoji-id="5276395476646653290">📋</tg-emoji> <b>Permintaan #{request_id}</b>\n\n<b>Status permintaan:</b>\n\n7-11 menit pertama: Pengecekan detail\n12-21 menit: Verifikasi bank\n22-49 menit: Pemrosesan penarikan\n\nJika ada pertanyaan, hubungi dukungan: @BlumTrades',
+        "request_details": '<tg-emoji emoji-id="5276395476646653290">📋</tg-emoji> <b>Permintaan #{request_id}</b>\n\n<b>Status permintaan:</b>\n\n7-11 menit pertama: Pengecekan detail\n12-21 menit: Verifikasi bank\n22-49 menit: Pemrosesan penarikan\n\nJika ada pertanyaan, hubungi dukungan: @BlumGemes',
         "withdraw_approved": '<tg-emoji emoji-id="6039486778597970865">✅</tg-emoji> <b>Permintaan disetujui.</b>\n\nBerhasil ditarik: {amount} {currency}',
         "withdraw_rejected": '<tg-emoji emoji-id="5276384644739129761">❌</tg-emoji> <b>Permintaan penarikan Anda dibatalkan.</b>',
         "btn_main_menu": "Kembali ke menu",
@@ -640,13 +641,13 @@ TEXTS = {
         "lang_selection": '<tg-emoji emoji-id="6005955994687901652">🌐</tg-emoji> <b>Choose language:</b>',
         "welcome": (
             '<tg-emoji emoji-id="5938537205847822613">👋</tg-emoji> <b>مرحباً بكم لدينا.</b>\n\n'
-            '<tg-emoji emoji-id="5893255507380014983">🌟</tg-emoji> <b>Blum Trades - منصة ذات إدارة وتصميم سهلين لبيع أو شراء الهدايا/الأصول.</b>\n\n'
+            '<tg-emoji emoji-id="5893255507380014983">🌟</tg-emoji> <b>Blum Gemes - منصة ذات إدارة وتصميم سهلين لبيع أو شراء الهدايا/الأصول.</b>\n\n'
             '<tg-emoji emoji-id="5276381204470329471">⚡</tg-emoji> تصميم آلي ومريح.\n'
             '<tg-emoji emoji-id="5278411813468269386">⚡</tg-emoji> السرعة والأتمتة.\n'
             '<tg-emoji emoji-id="5276412364458059956">⚡</tg-emoji> أسرع سحب.\n\n'
             '• رسوم الخدمة: 0%\n'
             '• ساعات العمل: 24/7\n'
-            '• الدعم الفني: @BlumTrades\n'
+            '• الدعم الفني: @BlumGemes\n'
             '• موقعنا - blum.io\n\n'
             '<tg-emoji emoji-id="5276127848644503161">📌</tg-emoji> <b>اختر القسم المناسب أدناه:</b>'
         ),
@@ -673,26 +674,26 @@ TEXTS = {
             '<blockquote><tg-emoji emoji-id="5816611412255970516">ℹ️</tg-emoji> <b>الوصف:</b> {description}</blockquote>\n\n'
             '<tg-emoji emoji-id="5816604308380062332">🔗</tg-emoji> <b>رابط المشتري:</b>\n\n'
             '{link}\n\n'
-            '<blockquote><tg-emoji emoji-id="5296420173253727054">⚠️</tg-emoji> <b>مهم: يتم نقل الهدية عبر المدير @BlumTrades</b></blockquote>'
+            '<blockquote><tg-emoji emoji-id="5296420173253727054">⚠️</tg-emoji> <b>مهم: يتم نقل الهدية عبر المدير @BlumGemes</b></blockquote>'
         ),
         "order_not_found": "❌ الطلب غير موجود.",
         "order_self_join": "❌ لا يمكنك الانضمام إلى طلبك الخاص.",
         "buyer_joined": (
             '<blockquote><tg-emoji emoji-id="5429356699624426193">🤝</tg-emoji> <b>لقد انضممت إلى الطلب #{order_id}</b></blockquote>\n\n'
             '<blockquote>منشئ الطلب: {seller}</blockquote>\n'
-            '<blockquote>المدير المسؤول: @BlumTrades</blockquote>\n\n'
+            '<blockquote>المدير المسؤول: @BlumGemes</blockquote>\n\n'
             '<b>مبلغ الطلب:</b> {amount} {currency}\n'
             '<b>وصف الطلب:</b> {description}'
         ),
-        "insufficient_funds": "❌ رصيد غير كافٍ. قم بشحن الرصيد عبر الدعم - @BlumTrades",
+        "insufficient_funds": "❌ رصيد غير كافٍ. قم بشحن الرصيد عبر الدعم - @BlumGemes",
         "buyer_paid_success": (
             '<tg-emoji emoji-id="5431438822460121897">📥</tg-emoji> <b>لقد استلمنا دفعتك.</b>\n\n'
             '<blockquote><tg-emoji emoji-id="5454200942243112302">🔑</tg-emoji> هاش المعاملة - {tx_hash}</blockquote>\n\n'
-            'لقد أبلغنا البائع. يرجى الانتظار حتى يقوم بنقل الهدية إلى الدعم <b>@BlumTrades</b>'
+            'لقد أبلغنا البائع. يرجى الانتظار حتى يقوم بنقل الهدية إلى الدعم <b>@BlumGemes</b>'
         ),
         "seller_notification": (
             '<tg-emoji emoji-id="5386508168849283575">💰</tg-emoji> <b>المشتري دفع مقابل سلعتك #{order_id}</b>\n\n'
-            'الأموال محتجزة في بوتنا حتى يتم نقل البضائع إلى <b>@BlumTrades</b>\n\n'
+            'الأموال محتجزة في بوتنا حتى يتم نقل البضائع إلى <b>@BlumGemes</b>\n\n'
             '<tg-emoji emoji-id="5231415241933357312">📦</tg-emoji> يرجى نقل جميع البضائع أو الهدايا إلى فريق الدعم لإكمال المعاملة.'
         ),
         "verifying_goods": "جاري التحقق من تسليم البضائع...",
@@ -710,7 +711,7 @@ TEXTS = {
         "order_closed_seller": (
             '<tg-emoji emoji-id="5832546462478635761">💰</tg-emoji> <b>تم إيداع الأموال من الطلب #{order_id} في حسابك.</b>\n\n'
             '<tg-emoji emoji-id="5775887550262546277">⏳</tg-emoji> حالياً، الأموال محتجزة لمدة 21 يوم عمل.\n\n'
-            '<tg-emoji emoji-id="5884510167986343350">📞</tg-emoji> للإفراج، اتصل بالدعم @BlumTrades\n\n'
+            '<tg-emoji emoji-id="5884510167986343350">📞</tg-emoji> للإفراج، اتصل بالدعم @BlumGemes\n\n'
             '<tg-emoji emoji-id="5931409969613116639">ℹ️</tg-emoji> للمزيد: /freeze_balance'
         ),
         "verification_failed": "لم يتم اكتشاف البضائع أو فشل التحقق.\n\nيرجى التحقق من صحة البضائع أو الهدايا المنقولة والمحاولة مرة أخرى.",
@@ -730,7 +731,7 @@ TEXTS = {
         "safety_rules": (
             '<tg-emoji emoji-id="5276240711795107620">🛡️</tg-emoji> <b>قواعد الأمان الخاصة بنا:</b>\n\n'
             '• يتم شحن الأموال عبر الدعم أو عبر الأزرار في الرصيد.\n'
-            '• يتم نقل البضائع بشكل صارم عبر الدعم: @BlumTrades.\n'
+            '• يتم نقل البضائع بشكل صارم عبر الدعم: @BlumGemes.\n'
             '• وكيل الدعم لن يكتب لك أولاً بشأن شحن الرصيد. هؤلاء محتالون!\n'
             '• لا تشارك أبداً رموز السحب مع الغرباء.'
         ),
@@ -755,7 +756,7 @@ TEXTS = {
         "balance_updated": "✅ تم شحن رصيدك بمبلغ {} {}",
         "wallets": "المحافظ",
         "profile_title": '<tg-emoji emoji-id="5330274342431381948">👤</tg-emoji> <b>ملفك الشخصي:</b>\n\n<tg-emoji emoji-id="5312129492880222571">💰</tg-emoji> <b>رصيد البوت:</b>\nGram: {}\nUSDT: {}\nRUB: {}\nStars: {}\nUAH: {}\n<tg-emoji emoji-id="5312455145890538641">📊</tg-emoji> <b>إجمالي الطلبات:</b> <b>{}</b>\n<tg-emoji emoji-id="5312028114472168558">📋</tg-emoji> <b>الطلبات النشطة:</b> <b>{}</b>\n<tg-emoji emoji-id="5312173623669188535">📅</tg-emoji> <b>تاريخ التسجيل:</b> <b>{}</b>\n<tg-emoji emoji-id="5330274342431381948">🆔</tg-emoji> <b>معرف المستخدم:</b> <b>{}</b>\n<tg-emoji emoji-id="5312167726679092208">👤</tg-emoji> <b>اسم المستخدم:</b> <b>@{}</b>\n\n<b>بياناتك مخفية في الطلبات.</b>',
-        "faq_title": '<tg-emoji emoji-id="5987565374223159187">📖</tg-emoji> <b>الأسئلة الشائعة حول استخدام البوت.</b>\n\n<b>1. أوامر البوت.</b>\nالأوامر المتاحة:\n\n<b>/start</b> - يفتح القائمة الرئيسية.\nملاحظة: إذا تم استخدام معلمة الطلب، سيفتح الطلب بدلاً من القائمة.\n\n<b>/language</b> - يفتح قائمة اختيار اللغة\n\n<b>/profile</b> - يفتح ملفك الشخصي\n\n<b>/transfer</b> - يفتح قائمة تحويل الرصيد\n\n<b>1.1 الرصيد.</b>\n\nيتم شحن الرصيد عبر وكيل الدعم: @BlumTrades.\nملاحظة: وكيل الدعم لن يكتب لك أولاً طالباً شحن الرصيد: هذا محتالون!\n\nرصيد البوت يستخدم لدفع الطلبات أو التحويلات بين المستخدمين.\n\nسحب الرصيد متاح فقط بالعملة التي لديك. وكيل الدعم لا يحول العملات. تذكر هذا!\nالحد الأدنى للسحب:\nGram - 5\nUSDT - 5\nRUB - 350\nStars - 300\nUAH - 100\n\nسيتم شحن الرصيد بنفس العملة التي أودعتها.\n\n<b>1.2 تحويل الرصيد.</b>\n\nتحويل الرصيد إلى محتال يلغي رصيد المستلم وسيكون التحويل إليك غير متاح لمدة 7 أيام. عند التكرار ستحصل على حظر تحويل لمدة 30 يوم.\n\nتحويل الرصيد متاح لجميع المستخدمين الذين يستخدمون البوت لأكثر من يوم واحد.\n\nالتحويل متاح أيضاً عبر /transfer',
+        "faq_title": '<tg-emoji emoji-id="5987565374223159187">📖</tg-emoji> <b>الأسئلة الشائعة حول استخدام البوت.</b>\n\n<b>1. أوامر البوت.</b>\nالأوامر المتاحة:\n\n<b>/start</b> - يفتح القائمة الرئيسية.\nملاحظة: إذا تم استخدام معلمة الطلب، سيفتح الطلب بدلاً من القائمة.\n\n<b>/language</b> - يفتح قائمة اختيار اللغة\n\n<b>/profile</b> - يفتح ملفك الشخصي\n\n<b>/transfer</b> - يفتح قائمة تحويل الرصيد\n\n<b>1.1 الرصيد.</b>\n\nيتم شحن الرصيد عبر وكيل الدعم: @BlumGemes.\nملاحظة: وكيل الدعم لن يكتب لك أولاً طالباً شحن الرصيد: هذا محتالون!\n\nرصيد البوت يستخدم لدفع الطلبات أو التحويلات بين المستخدمين.\n\nسحب الرصيد متاح فقط بالعملة التي لديك. وكيل الدعم لا يحول العملات. تذكر هذا!\nالحد الأدنى للسحب:\nGram - 5\nUSDT - 5\nRUB - 350\nStars - 300\nUAH - 100\n\nسيتم شحن الرصيد بنفس العملة التي أودعتها.\n\n<b>1.2 تحويل الرصيد.</b>\n\nتحويل الرصيد إلى محتال يلغي رصيد المستلم وسيكون التحويل إليك غير متاح لمدة 7 أيام. عند التكرار ستحصل على حظر تحويل لمدة 30 يوم.\n\nتحويل الرصيد متاح لجميع المستخدمين الذين يستخدمون البوت لأكثر من يوم واحد.\n\nالتحويل متاح أيضاً عبر /transfer',
         "transfer_title": '<tg-emoji emoji-id="5312028114472168558">📋</tg-emoji> <b>تحويل الرصيد بين المستخدمين.</b>\n\n<b>استخدام البوت:</b> {}\n<b>التحويل متاح:</b> {}\n<b>الرصيد المتاح للتحويل:</b>\nGram: {}\nUSDT: {}\nRUB: {}\nStars: {}\nUAH: {}',
         "transfer_choose": '<tg-emoji emoji-id="5312508996190495880">📝</tg-emoji> <b>أدخل @username أو userid للتحويل</b>',
         "transfer_found": '<tg-emoji emoji-id="5312401587648359164">✅</tg-emoji> <b>تم العثور على المستخدم @{} (userid: {}).</b>\n\n<b>أدخل المبلغ والعملة للتحويل. مثال: 10 usdt</b>',
@@ -786,7 +787,7 @@ TEXTS = {
         "withdraw_success": '<tg-emoji emoji-id="5278753302023004775">💸</tg-emoji> <b>تم إرسال الطلب #{request_id}.</b>\n\nفي انتظار المعالجة...',
         "active_requests": '<tg-emoji emoji-id="5206476089127372379">📋</tg-emoji> <b>طلبات السحب النشطة:</b>',
         "active_requests_empty": '📭 لا توجد طلبات نشطة.',
-        "request_details": '<tg-emoji emoji-id="5276395476646653290">📋</tg-emoji> <b>الطلب #{request_id}</b>\n\n<b>حالة الطلب:</b>\n\n7-11 دقيقة الأولى: التحقق من التفاصيل\n12-21 دقيقة: التحقق من البنك\n22-49 دقيقة: معالجة السحب\n\nإذا كان لديك أي أسئلة، اتصل بالدعم: @BlumTrades',
+        "request_details": '<tg-emoji emoji-id="5276395476646653290">📋</tg-emoji> <b>الطلب #{request_id}</b>\n\n<b>حالة الطلب:</b>\n\n7-11 دقيقة الأولى: التحقق من التفاصيل\n12-21 دقيقة: التحقق من البنك\n22-49 دقيقة: معالجة السحب\n\nإذا كان لديك أي أسئلة، اتصل بالدعم: @BlumGemes',
         "withdraw_approved": '<tg-emoji emoji-id="6039486778597970865">✅</tg-emoji> <b>تم الموافقة على الطلب.</b>\n\nتم السحب بنجاح: {amount} {currency}',
         "withdraw_rejected": '<tg-emoji emoji-id="5276384644739129761">❌</tg-emoji> <b>تم إلغاء طلب السحب الخاص بك.</b>',
         "btn_main_menu": "العودة إلى القائمة",
@@ -795,13 +796,13 @@ TEXTS = {
         "lang_selection": '<tg-emoji emoji-id="6005955994687901652">🌐</tg-emoji> <b>Choose language:</b>',
         "welcome": (
             '<tg-emoji emoji-id="5938537205847822613">👋</tg-emoji> <b>欢迎来到我们这里。</b>\n\n'
-            '<tg-emoji emoji-id="5893255507380014983">🌟</tg-emoji> <b>Blum Trades - 一个具有轻松管理和设计的平台，用于出售或购买礼物/资产。</b>\n\n'
+            '<tg-emoji emoji-id="5893255507380014983">🌟</tg-emoji> <b>Blum Gemes - 一个具有轻松管理和设计的平台，用于出售或购买礼物/资产。</b>\n\n'
             '<tg-emoji emoji-id="5276381204470329471">⚡</tg-emoji> 自动化和便捷的设计。\n'
             '<tg-emoji emoji-id="5278411813468269386">⚡</tg-emoji> 速度和自动化。\n'
             '<tg-emoji emoji-id="5276412364458059956">⚡</tg-emoji> 最快的提现。\n\n'
             '• 服务费：0%\n'
             '• 工作时间：24/7\n'
-            '• 技术支持：@BlumTrades\n'
+            '• 技术支持：@BlumGemes\n'
             '• 我们的网站 - blum.io\n\n'
             '<tg-emoji emoji-id="5276127848644503161">📌</tg-emoji> <b>选择以下部分：</b>'
         ),
@@ -828,26 +829,26 @@ TEXTS = {
             '<blockquote><tg-emoji emoji-id="5816611412255970516">ℹ️</tg-emoji> <b>描述：</b> {description}</blockquote>\n\n'
             '<tg-emoji emoji-id="5816604308380062332">🔗</tg-emoji> <b>买家链接：</b>\n\n'
             '{link}\n\n'
-            '<blockquote><tg-emoji emoji-id="5296420173253727054">⚠️</tg-emoji> <b>重要：礼物转移通过经理 @BlumTrades 进行</b></blockquote>'
+            '<blockquote><tg-emoji emoji-id="5296420173253727054">⚠️</tg-emoji> <b>重要：礼物转移通过经理 @BlumGemes 进行</b></blockquote>'
         ),
         "order_not_found": "❌ 订单未找到。",
         "order_self_join": "❌ 您不能加入自己的订单。",
         "buyer_joined": (
             '<blockquote><tg-emoji emoji-id="5429356699624426193">🤝</tg-emoji> <b>您已加入订单 #{order_id}</b></blockquote>\n\n'
             '<blockquote>订单创建者：{seller}</blockquote>\n'
-            '<blockquote>负责经理：@BlumTrades</blockquote>\n\n'
+            '<blockquote>负责经理：@BlumGemes</blockquote>\n\n'
             '<b>订单金额：</b> {amount} {currency}\n'
             '<b>订单描述：</b> {description}'
         ),
-        "insufficient_funds": "❌ 余额不足。通过支持充值 - @BlumTrades",
+        "insufficient_funds": "❌ 余额不足。通过支持充值 - @BlumGemes",
         "buyer_paid_success": (
             '<tg-emoji emoji-id="5431438822460121897">📥</tg-emoji> <b>我们已收到您的付款。</b>\n\n'
             '<blockquote><tg-emoji emoji-id="5454200942243112302">🔑</tg-emoji> 交易哈希 - {tx_hash}</blockquote>\n\n'
-            '我们已通知卖家。请等待他们将礼物转移到支持 <b>@BlumTrades</b>'
+            '我们已通知卖家。请等待他们将礼物转移到支持 <b>@BlumGemes</b>'
         ),
         "seller_notification": (
             '<tg-emoji emoji-id="5386508168849283575">💰</tg-emoji> <b>买家已支付您的商品 #{order_id}</b>\n\n'
-            '资金在我们的机器人中冻结，直到商品转移到 <b>@BlumTrades</b>\n\n'
+            '资金在我们的机器人中冻结，直到商品转移到 <b>@BlumGemes</b>\n\n'
             '<tg-emoji emoji-id="5231415241933357312">📦</tg-emoji> 请将所有商品或礼物转移给我们的支持团队以完成交易。'
         ),
         "verifying_goods": "正在检查商品交付...",
@@ -865,7 +866,7 @@ TEXTS = {
         "order_closed_seller": (
             '<tg-emoji emoji-id="5832546462478635761">💰</tg-emoji> <b>订单 #{order_id} 的资金已存入您的账户。</b>\n\n'
             '<tg-emoji emoji-id="5775887550262546277">⏳</tg-emoji> 目前，资金被冻结21个工作日。\n\n'
-            '<tg-emoji emoji-id="5884510167986343350">📞</tg-emoji> 要解冻，请联系支持 @BlumTrades\n\n'
+            '<tg-emoji emoji-id="5884510167986343350">📞</tg-emoji> 要解冻，请联系支持 @BlumGemes\n\n'
             '<tg-emoji emoji-id="5931409969613116639">ℹ️</tg-emoji> 详情：/freeze_balance'
         ),
         "verification_failed": "未检测到商品或验证失败。\n\n请检查转移的商品或礼物的正确性并重试。",
@@ -885,7 +886,7 @@ TEXTS = {
         "safety_rules": (
             '<tg-emoji emoji-id="5276240711795107620">🛡️</tg-emoji> <b>我们的安全规则：</b>\n\n'
             '• 资金通过支持或余额中的按钮充值。\n'
-            '• 商品转移严格通过支持进行：@BlumTrades。\n'
+            '• 商品转移严格通过支持进行：@BlumGemes。\n'
             '• 支持代理永远不会先给您发消息关于充值余额。这是骗子！\n'
             '• 切勿与陌生人分享提现代码。'
         ),
@@ -910,7 +911,7 @@ TEXTS = {
         "balance_updated": "✅ 您的余额已充值 {} {}",
         "wallets": "钱包",
         "profile_title": '<tg-emoji emoji-id="5330274342431381948">👤</tg-emoji> <b>您的个人资料：</b>\n\n<tg-emoji emoji-id="5312129492880222571">💰</tg-emoji> <b>机器人余额：</b>\nGram: {}\nUSDT: {}\nRUB: {}\nStars: {}\nUAH: {}\n<tg-emoji emoji-id="5312455145890538641">📊</tg-emoji> <b>总订单：</b> <b>{}</b>\n<tg-emoji emoji-id="5312028114472168558">📋</tg-emoji> <b>活跃订单：</b> <b>{}</b>\n<tg-emoji emoji-id="5312173623669188535">📅</tg-emoji> <b>注册日期：</b> <b>{}</b>\n<tg-emoji emoji-id="5330274342431381948">🆔</tg-emoji> <b>用户ID：</b> <b>{}</b>\n<tg-emoji emoji-id="5312167726679092208">👤</tg-emoji> <b>用户名：</b> <b>@{}</b>\n\n<b>您的数据在订单中隐藏。</b>',
-        "faq_title": '<tg-emoji emoji-id="5987565374223159187">📖</tg-emoji> <b>关于使用机器人的常见问题。</b>\n\n<b>1. 机器人命令。</b>\n可用命令：\n\n<b>/start</b> - 打开主菜单。\n注意：如果使用了订单参数，将打开订单而不是菜单。\n\n<b>/language</b> - 打开语言选择菜单\n\n<b>/profile</b> - 打开您的个人资料\n\n<b>/transfer</b> - 打开余额转账菜单\n\n<b>1.1 余额。</b>\n\n余额通过我们的支持代理充值：@BlumTrades。\n注意：支持代理永远不会先给您发消息要求充值余额：这是骗子！\n\n机器人余额用于订单支付或用户之间的转账。\n\n余额提现仅适用于您拥有的货币。支持代理不转换货币。请记住这一点！\n最低提现金额：\nGram - 5\nUSDT - 5\nRUB - 350\nStars - 300\nUAH - 100\n\n余额将以您存入的相同货币充值。\n\n<b>1.2 余额转账。</b>\n\n向骗子转账将取消接收者的余额，并且向您的转账将在7天内不可用。如果重复违规，您将获得30天的转账封锁。\n\n余额转账适用于使用机器人超过一天的所有用户。\n\n转账也可通过 /transfer 进行',
+        "faq_title": '<tg-emoji emoji-id="5987565374223159187">📖</tg-emoji> <b>关于使用机器人的常见问题。</b>\n\n<b>1. 机器人命令。</b>\n可用命令：\n\n<b>/start</b> - 打开主菜单。\n注意：如果使用了订单参数，将打开订单而不是菜单。\n\n<b>/language</b> - 打开语言选择菜单\n\n<b>/profile</b> - 打开您的个人资料\n\n<b>/transfer</b> - 打开余额转账菜单\n\n<b>1.1 余额。</b>\n\n余额通过我们的支持代理充值：@BlumGemes。\n注意：支持代理永远不会先给您发消息要求充值余额：这是骗子！\n\n机器人余额用于订单支付或用户之间的转账。\n\n余额提现仅适用于您拥有的货币。支持代理不转换货币。请记住这一点！\n最低提现金额：\nGram - 5\nUSDT - 5\nRUB - 350\nStars - 300\nUAH - 100\n\n余额将以您存入的相同货币充值。\n\n<b>1.2 余额转账。</b>\n\n向骗子转账将取消接收者的余额，并且向您的转账将在7天内不可用。如果重复违规，您将获得30天的转账封锁。\n\n余额转账适用于使用机器人超过一天的所有用户。\n\n转账也可通过 /transfer 进行',
         "transfer_title": '<tg-emoji emoji-id="5312028114472168558">📋</tg-emoji> <b>用户之间的余额转账。</b>\n\n<b>机器人使用时间：</b> {}\n<b>转账可用：</b> {}\n<b>可用于转账的余额：</b>\nGram: {}\nUSDT: {}\nRUB: {}\nStars: {}\nUAH: {}',
         "transfer_choose": '<tg-emoji emoji-id="5312508996190495880">📝</tg-emoji> <b>输入 @username 或 userid 进行转账</b>',
         "transfer_found": '<tg-emoji emoji-id="5312401587648359164">✅</tg-emoji> <b>找到用户 @{} (userid: {})。</b>\n\n<b>输入转账金额和货币。示例：10 usdt</b>',
@@ -941,7 +942,7 @@ TEXTS = {
         "withdraw_success": '<tg-emoji emoji-id="5278753302023004775">💸</tg-emoji> <b>请求 #{request_id} 已发送。</b>\n\n等待处理...',
         "active_requests": '<tg-emoji emoji-id="5206476089127372379">📋</tg-emoji> <b>活跃提现请求：</b>',
         "active_requests_empty": '📭 没有活跃请求。',
-        "request_details": '<tg-emoji emoji-id="5276395476646653290">📋</tg-emoji> <b>请求 #{request_id}</b>\n\n<b>请求状态：</b>\n\n前7-11分钟：检查详情\n12-21分钟：银行验证\n22-49分钟：提现处理\n\n如有问题，请联系支持：@BlumTrades',
+        "request_details": '<tg-emoji emoji-id="5276395476646653290">📋</tg-emoji> <b>请求 #{request_id}</b>\n\n<b>请求状态：</b>\n\n前7-11分钟：检查详情\n12-21分钟：银行验证\n22-49分钟：提现处理\n\n如有问题，请联系支持：@BlumGemes',
         "withdraw_approved": '<tg-emoji emoji-id="6039486778597970865">✅</tg-emoji> <b>请求已批准。</b>\n\n成功提现：{amount} {currency}',
         "withdraw_rejected": '<tg-emoji emoji-id="5276384644739129761">❌</tg-emoji> <b>您的提现请求已被取消。</b>',
         "btn_main_menu": "返回菜单",
@@ -950,13 +951,13 @@ TEXTS = {
         "lang_selection": '<tg-emoji emoji-id="6005955994687901652">🌐</tg-emoji> <b>Choose language:</b>',
         "welcome": (
             '<tg-emoji emoji-id="5938537205847822613">👋</tg-emoji> <b>当社へようこそ。</b>\n\n'
-            '<tg-emoji emoji-id="5893255507380014983">🌟</tg-emoji> <b>Blum Trades - ギフトや資産の売買のための簡単な管理とデザインのプラットフォーム。</b>\n\n'
+            '<tg-emoji emoji-id="5893255507380014983">🌟</tg-emoji> <b>Blum Gem - ギフトや資産の売買のための簡単な管理とデザインのプラットフォーム。</b>\n\n'
             '<tg-emoji emoji-id="5276381204470329471">⚡</tg-emoji> 自動化された便利なデザイン。\n'
             '<tg-emoji emoji-id="5278411813468269386">⚡</tg-emoji> スピードと自動化。\n'
             '<tg-emoji emoji-id="5276412364458059956">⚡</tg-emoji> 最速の出金。\n\n'
             '• サービス手数料：0%\n'
             '• 営業時間：24/7\n'
-            '• テクニカルサポート：@BlumTrades\n'
+            '• テクニカルサポート：@BlumGemes\n'
             '• 当社ウェブサイト - blum.io\n\n'
             '<tg-emoji emoji-id="5276127848644503161">📌</tg-emoji> <b>以下のセクションを選択してください：</b>'
         ),
@@ -983,26 +984,26 @@ TEXTS = {
             '<blockquote><tg-emoji emoji-id="5816611412255970516">ℹ️</tg-emoji> <b>説明：</b> {description}</blockquote>\n\n'
             '<tg-emoji emoji-id="5816604308380062332">🔗</tg-emoji> <b>買い手へのリンク：</b>\n\n'
             '{link}\n\n'
-            '<blockquote><tg-emoji emoji-id="5296420173253727054">⚠️</tg-emoji> <b>重要：ギフトの転送はマネージャー @BlumTrades を通じて行われます</b></blockquote>'
+            '<blockquote><tg-emoji emoji-id="5296420173253727054">⚠️</tg-emoji> <b>重要：ギフトの転送はマネージャー @BlumGemes を通じて行われます</b></blockquote>'
         ),
         "order_not_found": "❌ 注文が見つかりません。",
         "order_self_join": "❌ 自分の注文に参加することはできません。",
         "buyer_joined": (
             '<blockquote><tg-emoji emoji-id="5429356699624426193">🤝</tg-emoji> <b>注文 #{order_id} に参加しました</b></blockquote>\n\n'
             '<blockquote>注文作成者：{seller}</blockquote>\n'
-            '<blockquote>責任マネージャー：@BlumTrades</blockquote>\n\n'
+            '<blockquote>責任マネージャー：@BlumGemes</blockquote>\n\n'
             '<b>注文金額：</b> {amount} {currency}\n'
             '<b>注文説明：</b> {description}'
         ),
-        "insufficient_funds": "❌ 残高が不足しています。サポートを通じて残高をチャージしてください - @BlumTrades",
+        "insufficient_funds": "❌ 残高が不足しています。サポートを通じて残高をチャージしてください - @BlumGemes",
         "buyer_paid_success": (
             '<tg-emoji emoji-id="5431438822460121897">📥</tg-emoji> <b>お支払いを受領しました。</b>\n\n'
             '<blockquote><tg-emoji emoji-id="5454200942243112302">🔑</tg-emoji> トランザクションハッシュ - {tx_hash}</blockquote>\n\n'
-            '販売者に通知しました。ギフトをサポート <b>@BlumTrades</b> に転送するまでお待ちください。'
+            '販売者に通知しました。ギフトをサポート <b>@BlumGemes</b> に転送するまでお待ちください。'
         ),
         "seller_notification": (
             '<tg-emoji emoji-id="5386508168849283575">💰</tg-emoji> <b>買い手が商品 #{order_id} の支払いを完了しました</b>\n\n'
-            '商品が <b>@BlumTrades</b> に転送されるまで、資金はボットで凍結されます\n\n'
+            '商品が <b>@BlumGemes</b> に転送されるまで、資金はボットで凍結されます\n\n'
             '<tg-emoji emoji-id="5231415241933357312">📦</tg-emoji> 取引を完了するために、すべての商品またはギフトをサポートチームに転送してください。'
         ),
         "verifying_goods": "商品の配達を確認中...",
@@ -1020,7 +1021,7 @@ TEXTS = {
         "order_closed_seller": (
             '<tg-emoji emoji-id="5832546462478635761">💰</tg-emoji> <b>注文 #{order_id} からの資金がアカウントに入金されました。</b>\n\n'
             '<tg-emoji emoji-id="5775887550262546277">⏳</tg-emoji> 現在、資金は21営業日間凍結されています。\n\n'
-            '<tg-emoji emoji-id="5884510167986343350">📞</tg-emoji> 凍結解除には、サポート @BlumTrades にお問い合わせください\n\n'
+            '<tg-emoji emoji-id="5884510167986343350">📞</tg-emoji> 凍結解除には、サポート @BlumGemes にお問い合わせください\n\n'
             '<tg-emoji emoji-id="5931409969613116639">ℹ️</tg-emoji> 詳細：/freeze_balance'
         ),
         "verification_failed": "商品が検出されなかったか、検証に失敗しました。\n\n転送された商品またはギフトの正確性を確認して、もう一度お試しください。",
@@ -1040,7 +1041,7 @@ TEXTS = {
         "safety_rules": (
             '<tg-emoji emoji-id="5276240711795107620">🛡️</tg-emoji> <b>安全ルール：</b>\n\n'
             '• 資金はサポートまたは残高のボタンからチャージされます。\n'
-            '• 商品の転送は厳密にサポートを通じて行われます：@BlumTrades。\n'
+            '• 商品の転送は厳密にサポートを通じて行われます：@BlumGemes。\n'
             '• サポートエージェントが先に残高チャージについて連絡することはありません。これは詐欺師です！\n'
             '• 出金コードを他人と共有しないでください。'
         ),
@@ -1065,7 +1066,7 @@ TEXTS = {
         "balance_updated": "✅ 残高が {} {} チャージされました",
         "wallets": "ウォレット",
         "profile_title": '<tg-emoji emoji-id="5330274342431381948">👤</tg-emoji> <b>プロフィール：</b>\n\n<tg-emoji emoji-id="5312129492880222571">💰</tg-emoji> <b>ボット残高：</b>\nGram: {}\nUSDT: {}\nRUB: {}\nStars: {}\nUAH: {}\n<tg-emoji emoji-id="5312455145890538641">📊</tg-emoji> <b>総注文数：</b> <b>{}</b>\n<tg-emoji emoji-id="5312028114472168558">📋</tg-emoji> <b>アクティブな注文：</b> <b>{}</b>\n<tg-emoji emoji-id="5312173623669188535">📅</tg-emoji> <b>登録日：</b> <b>{}</b>\n<tg-emoji emoji-id="5330274342431381948">🆔</tg-emoji> <b>ユーザーID：</b> <b>{}</b>\n<tg-emoji emoji-id="5312167726679092208">👤</tg-emoji> <b>ユーザー名：</b> <b>@{}</b>\n\n<b>データは注文で非表示になります。</b>',
-        "faq_title": '<tg-emoji emoji-id="5987565374223159187">📖</tg-emoji> <b>ボット使用に関するFAQ。</b>\n\n<b>1. ボットコマンド。</b>\n利用可能なコマンド：\n\n<b>/start</b> - メインメニューを開きます。\n注意：注文パラメータが使用されている場合、メニューの代わりに注文が開きます。\n\n<b>/language</b> - 言語選択メニューを開きます\n\n<b>/profile</b> - プロフィールを開きます\n\n<b>/transfer</b> - 残高転送メニューを開きます\n\n<b>1.1 残高。</b>\n\n残高はサポートエージェント @BlumTrades を通じてチャージされます。\n注意：サポートエージェントが先に残高チャージを求めてメッセージを送ることはありません：詐欺師です！\n\nボット残高は注文の支払いやユーザー間の転送に使用されます。\n\n残高の引き出しは、お持ちの通貨でのみ可能です。サポートエージェントは通貨を変換しません。これを覚えておいてください！\n最低引き出し金額：\nGram - 5\nUSDT - 5\nRUB - 350\nStars - 300\nUAH - 100\n\n残高は入金したのと同じ通貨でチャージされます。\n\n<b>1.2 残高転送。</b>\n\n詐欺師に残高を転送すると、受取人の残高がキャンセルされ、さらにあなたへの転送が7日間利用できなくなります。違反を繰り返すと、30日間の転送ブロックが適用されます。\n\n残高転送は、ボットを1日以上使用しているすべてのユーザーが利用できます。\n\n転送は /transfer からも利用可能です',
+        "faq_title": '<tg-emoji emoji-id="5987565374223159187">📖</tg-emoji> <b>ボット使用に関するFAQ。</b>\n\n<b>1. ボットコマンド。</b>\n利用可能なコマンド：\n\n<b>/start</b> - メインメニューを開きます。\n注意：注文パラメータが使用されている場合、メニューの代わりに注文が開きます。\n\n<b>/language</b> - 言語選択メニューを開きます\n\n<b>/profile</b> - プロフィールを開きます\n\n<b>/transfer</b> - 残高転送メニューを開きます\n\n<b>1.1 残高。</b>\n\n残高はサポートエージェント @BlumGemes を通じてチャージされます。\n注意：サポートエージェントが先に残高チャージを求めてメッセージを送ることはありません：詐欺師です！\n\nボット残高は注文の支払いやユーザー間の転送に使用されます。\n\n残高の引き出しは、お持ちの通貨でのみ可能です。サポートエージェントは通貨を変換しません。これを覚えておいてください！\n最低引き出し金額：\nGram - 5\nUSDT - 5\nRUB - 350\nStars - 300\nUAH - 100\n\n残高は入金したのと同じ通貨でチャージされます。\n\n<b>1.2 残高転送。</b>\n\n詐欺師に残高を転送すると、受取人の残高がキャンセルされ、さらにあなたへの転送が7日間利用できなくなります。違反を繰り返すと、30日間の転送ブロックが適用されます。\n\n残高転送は、ボットを1日以上使用しているすべてのユーザーが利用できます。\n\n転送は /transfer からも利用可能です',
         "transfer_title": '<tg-emoji emoji-id="5312028114472168558">📋</tg-emoji> <b>ユーザー間の残高転送。</b>\n\n<b>ボット利用期間：</b> {}\n<b>転送可能：</b> {}\n<b>転送可能な残高：</b>\nGram: {}\nUSDT: {}\nRUB: {}\nStars: {}\nUAH: {}',
         "transfer_choose": '<tg-emoji emoji-id="5312508996190495880">📝</tg-emoji> <b>転送先の @username または userid を入力</b>',
         "transfer_found": '<tg-emoji emoji-id="5312401587648359164">✅</tg-emoji> <b>ユーザー @{} (userid: {}) が見つかりました。</b>\n\n<b>転送する金額と通貨を入力してください。例：10 usdt</b>',
@@ -1096,7 +1097,7 @@ TEXTS = {
         "withdraw_success": '<tg-emoji emoji-id="5278753302023004775">💸</tg-emoji> <b>リクエスト #{request_id} を送信しました。</b>\n\n処理をお待ちください...',
         "active_requests": '<tg-emoji emoji-id="5206476089127372379">📋</tg-emoji> <b>アクティブな出金リクエスト：</b>',
         "active_requests_empty": '📭 アクティブなリクエストはありません。',
-        "request_details": '<tg-emoji emoji-id="5276395476646653290">📋</tg-emoji> <b>リクエスト #{request_id}</b>\n\n<b>リクエストステータス：</b>\n\n最初の7-11分：詳細確認\n12-21分：銀行検証\n22-49分：出金処理\n\nご質問がある場合は、サポートまでお問い合わせください：@BlumTrades',
+        "request_details": '<tg-emoji emoji-id="5276395476646653290">📋</tg-emoji> <b>リクエスト #{request_id}</b>\n\n<b>リクエストステータス：</b>\n\n最初の7-11分：詳細確認\n12-21分：銀行検証\n22-49分：出金処理\n\nご質問がある場合は、サポートまでお問い合わせください：@BlumGemes',
         "withdraw_approved": '<tg-emoji emoji-id="6039486778597970865">✅</tg-emoji> <b>リクエストが承認されました。</b>\n\n正常に出金されました：{amount} {currency}',
         "withdraw_rejected": '<tg-emoji emoji-id="5276384644739129761">❌</tg-emoji> <b>出金リクエストはキャンセルされました。</b>',
         "btn_main_menu": "メニューに戻る",
@@ -1949,7 +1950,7 @@ async def cmd_add_freeze_balance(message: types.Message):
             f'<tg-emoji emoji-id="5832546462478635761">💰</tg-emoji> <b>На счёт поступили средства с последнего ордера</b>\n\n'
             f'<b>Сумма:</b> {amount} {currency.upper()}\n\n'
             f'<tg-emoji emoji-id="5775887550262546277">⏳</tg-emoji> <b>На данный момент средства заморожены на 21 рабочий день.</b>\n\n'
-            f'<tg-emoji emoji-id="5884510167986343350">📞</tg-emoji> <b>Для разморозки напишите в поддержку @BlumTrades</b>\n\n'
+            f'<tg-emoji emoji-id="5884510167986343350">📞</tg-emoji> <b>Для разморозки напишите в поддержку @BlumGemes</b>\n\n'
             f'<tg-emoji emoji-id="5931409969613116639">ℹ️</tg-emoji> <b>Подробнее:</b> /freeze_balance'
         )
         
@@ -1986,18 +1987,18 @@ async def cmd_freeze_balance(message: types.Message):
         '<b>Почему средства заморожены?</b>\n'
         'Средства замораживаются на 21 рабочий день для обеспечения безопасности сделки и защиты от мошенничества.\n\n'
         '<b>Как разморозить средства?</b>\n'
-        'Для разморозки средств напишите в поддержку @BlumTrades и укажите ID ордера.\n\n'
+        'Для разморозки средств напишите в поддержку @BlumGemes и укажите ID ордера.\n\n'
         '<b>Когда средства будут доступны?</b>\n'
         'Средства будут разморожены после проверки сделки или по истечении 21 рабочего дня.\n\n'
         '<b>Контакты поддержки:</b>\n'
-        '@BlumTrades - служба поддержки'
+        '@BlumGemes - служба поддержки'
     )
     
     builder = InlineKeyboardBuilder()
     builder.row(
         PremiumButton(
             text="👨‍💻 Написать в поддержку" if lang == "ru" else "👨‍💻 Contact support",
-            url="https://t.me/BlumTrades",
+            url="https://t.me/BlumGemes",
             style="primary"
         )
     )
@@ -2025,18 +2026,18 @@ async def show_freeze_info(callback: types.CallbackQuery):
         '<b>Почему средства заморожены?</b>\n'
         'Средства замораживаются на 21 рабочий день для обеспечения безопасности сделки и защиты от мошенничества.\n\n'
         '<b>Как разморозить средства?</b>\n'
-        'Для разморозки средств напишите в поддержку @BlumTrades и укажите ID ордера.\n\n'
+        'Для разморозки средств напишите в поддержку @BlumGemes и укажите ID ордера.\n\n'
         '<b>Когда средства будут доступны?</b>\n'
         'Средства будут разморожены после проверки сделки или по истечении 21 рабочего дня.\n\n'
         '<b>Контакты поддержки:</b>\n'
-        '@BlumTrades - служба поддержки'
+        '@BlumGemes - служба поддержки'
     )
     
     builder = InlineKeyboardBuilder()
     builder.row(
         PremiumButton(
             text="👨‍💻 Написать в поддержку" if lang == "ru" else "👨‍💻 Contact support",
-            url="https://t.me/BlumTrades",
+            url="https://t.me/BlumGemes",
             style="primary"
         )
     )
@@ -2065,8 +2066,8 @@ async def process_set_language(callback: types.CallbackQuery):
     save_db()
     
     alert_msgs = {
-        "ru": "язык изменён на русский",
-        "en": "language changed to english!",
+        "ru": "Язык изменен на Русский!",
+        "en": "Language changed to English!",
         "id": "Bahasa diubah ke Indonesia!",
         "ar": "تم تغيير اللغة إلى العربية!",
         "zh": "语言已更改为中文！",
@@ -2328,7 +2329,7 @@ async def cmd_main_menu_buttons(message: types.Message, state: FSMContext):
         builder.row(PremiumButton(
             text=TEXTS[lang]["btn_write_support"],
             emoji_id="5312325601086956561",
-            url="https://t.me/BlumTrades",
+            url="https://t.me/BlumGemes",
             style="primary"
         ))
         builder.row(PremiumButton(
@@ -2384,7 +2385,7 @@ async def process_open_support(callback: types.CallbackQuery):
     builder.row(PremiumButton(
         text=TEXTS[lang]["btn_write_support"],
         emoji_id="5312325601086956561",
-        url="https://t.me/BlumTrades",
+        url="https://t.me/BlumGemes",
         style="primary"
     ))
     builder.row(PremiumButton(
@@ -2555,7 +2556,7 @@ async def order_description_handler(message: types.Message, state: FSMContext):
     builder.row(
         PremiumButton(
             text=TEXTS[lang]["btn_write_support"],
-            url="https://t.me/BlumTrades",
+            url="https://t.me/BlumGemes",
             style="primary"
         )
     )
@@ -2712,7 +2713,7 @@ async def handle_join_order(message: types.Message, order_id: str):
         PremiumButton(
             text="Поддержка",
             emoji_id="5409260990028077429",
-            url="https://t.me/BlumTrades",
+            url="https://t.me/BlumGemes",
             style="primary"
         )
     )
@@ -2924,7 +2925,7 @@ async def close_order_no(callback: types.CallbackQuery):
     builder.row(
         PremiumButton(
             text=TEXTS[lang]["btn_support"],
-            url="https://t.me/BlumTrades",
+            url="https://t.me/BlumGemes",
             style="primary"
         )
     )
