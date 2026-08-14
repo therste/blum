@@ -208,8 +208,7 @@ TEXTS = {
             '<blockquote><tg-emoji emoji-id="5816611412255970516">ℹ️</tg-emoji> <b>Описание:</b> {description}</blockquote>\n\n'
             '<tg-emoji emoji-id="5816604308380062332">🔗</tg-emoji> <b>Ссылка для покупателя:</b>\n\n'
             '{link}\n\n'
-            '<blockquote><tg-emoji emoji-id="5296420173253727054">⚠️</tg-emoji> <b>Важно: передача подарка осуществляется через менеджера @BlumGemes
-</b></blockquote>'
+                '<blockquote><tg-emoji emoji-id="5296420173253727054">⚠️</tg-emoji> <b>Важно: передача подарка осуществляется через менеджера @BlumGemes</b></blockquote>'
         ),
         "order_not_found": "❌ Ордер не найден.",
         "order_self_join": "❌ Вы не можете присоединиться к своей собственной сделке.",
